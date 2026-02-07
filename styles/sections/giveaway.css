@@ -1,9 +1,32 @@
 /* Section 5: Giveaway */
 .giveaway-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 20px;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("/assets/BW/Thailand\ journey_MU-05_BW.png");
+  background-size: cover;
+  background-position: center;
   color: white;
   text-align: center;
+}
+
+.giveaway-section .container .h2 {
+  font-size: 35px;
+  text-align: center;
+  font: normal normal bold 35px/33px Utopia Std;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #f0f0f0;
+  opacity: 1;
+}
+
+.giveaway-section .container .h4 {
+  font-size: 35px;
+  text-align: center;
+  font: normal normal bold 35px/33px Utopia Std;
+  font-weight: bold;
+  letter-spacing: 0px;
+  color: #f0f0f0;
+  opacity: 1;
 }
 
 .giveaway-form {

@@ -123,3 +123,19 @@ console.log(
   "color: #e94560; font-size: 16px; font-weight: bold;",
 );
 console.log("%c✨ พัฒนาโดย: Claude", "color: #d4af37; font-size: 14px;");
+
+// ===== AUTO SLIDER FOR PHUD HONG FOUNDATION =====
+const slides = document.querySelectorAll(".slide");
+const dots = document.querySelectorAll(".dot");
+
+dots.forEach((dot) => {
+  dot.addEventListener("click", () => {
+    const index = dot.dataset.index;
+
+    slides.forEach((s) => s.classList.remove("active"));
+    dots.forEach((d) => d.classList.remove("active"));
+
+    slides[index].classList.add("active");
+    dot.classList.add("active");
+  });
+});

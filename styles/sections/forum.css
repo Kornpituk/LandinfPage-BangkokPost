@@ -1,28 +1,59 @@
 /* Section 4: Forum Banner */
 .forum-section {
-  padding: 60px 20px;
+  padding: 40px 0px;
   background: white;
+}
+.forum-section .container .text-center {
+  margin-bottom: 40px;
+}
+
+.forum-section .container .text-center h2,
+.forum-section .container .text-center h3 {
+  font-size: 50px;
+  font-weight: bold;
+  color: #000000;
 }
 
 .forum-banner {
   background: black;
+  color: white;
+  height: 300px;
+
+  display: flex;
+  align-items: center; /* กลางแนวตั้ง */
+  justify-content: center; /* กลางแนวนอน */
+}
+
+.forum-banner h3 {
+  font-size: 50px !important;
+  text-align: center;
+  font: normal normal bold 50px/45px Utopia Std !important;
+  letter-spacing: 0px;
+  color: #ffffff;
+}
+
+.forum-banner-text {
+  background: #f0f0f0;
   color: white;
   padding: 80px 20px;
   text-align: center;
   margin: 30px 0;
 }
 
+.forum-banner-text p {
+  font-size: 23px;
+  /* UI Properties */
+
+  text-align: center;
+  font: normal normal normal 23px/35px Garet;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
+
 .forum-banner h3 {
   font-size: 2rem;
   margin-bottom: 20px;
-}
-
-.speaker-carousel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 40px;
 }
 
 .speaker-photo {

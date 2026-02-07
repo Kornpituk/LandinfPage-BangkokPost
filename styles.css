@@ -4,8 +4,31 @@
 @import url("styles/layout/footer.css");
 @import url("styles/sections/gallery.css");
 @import url("styles/sections/giving.css");
+
+/* Foundation */
 @import url("styles/sections/foundation.css");
+/* Phud Hong Foundation Card */
+@import url("styles/foundation/PhudHongFoundationCard.css");
+/* Bangkok Post Foundation Card */
+@import url("styles/foundation/bangkokPostFoundationCard.css");
+/* Inspiring Stories Card */
+@import url("styles/foundation/inspiringStoriesCard.css");
+
+/* Forum */
 @import url("styles/sections/forum.css");
+/* speaker-carousel */
+@import url("styles/forum2022/speaker-carousel.css");
+
+/* Giveaway */
 @import url("styles/sections/giveaway.css");
+/* birthday */
+@import url("styles/giveaway/birthday.css");
+/* spin */
+@import url("styles/giveBackPromotions/giveBack.css");
+
+/* Promotions */
 @import url("styles/sections/promotions.css");
+
+/* Help */
 @import url("styles/sections/help.css");
+@import url("styles/base/donation-container.css");

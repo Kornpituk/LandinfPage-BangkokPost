@@ -1,21 +1,49 @@
 /* Section 3: Foundation Stories */
 .foundation-section {
-  padding: 60px 20px;
-  background: #f8f9fa;
+  background: #fff;
+  padding: 80px 0;
 }
 
 .foundation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
+  grid-template-columns: 1.2fr 1fr;
+  grid-template-areas:
+    "photos content"
+    "stories stories"
+    "phud content2";
+  gap: 60px 40px;
+}
+
+.top-foundation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.photo-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .foundation-card {
   background: white;
   padding: 30px;
-  border-left: 5px solid var(--bp-blue);
+  border-bottom: 5px solid var(--bp-dark);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+/*🧠 “INSPIRING STORIES” เต็มความกว้าง*/
+.foundation-card:nth-child(2) {
+  grid-column: 1 / -1;
+  border-top: 1px solid #ddd;
+  padding-top: 40px;
+}
+
+/*รูป 2x2 ด้านบนซ้าย (เหมือนภาพ)*/
+.foundation-card:first-child .row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .foundation-card h3 {
@@ -23,16 +51,34 @@
   margin-bottom: 20px;
   font-weight: bold;
 }
-
+/*👥 Scholar grid (8 รูปเล็ก)*/
 .scholar-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-  margin: 30px 0;
+  gap: 24px 16px;
 }
 
 .scholar-item {
   text-align: center;
+}
+
+.scholar-item small {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.news-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #cfcfcf,
+    transparent
+  );
+  margin: 48px 0;
 }
 
 .scholar-photo {
@@ -41,4 +87,42 @@
   background: #ddd;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+/*🏥 PHUD HONG + รูปสูงด้านขวา*/
+.phud-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 40px;
+}
+
+.phud-photo {
+  aspect-ratio: 3 / 4;
+}
+
+/* --- Areas --- */
+.foundation-card:nth-child(1) {
+  grid-area: photos;
+}
+
+.foundation-card:nth-child(2) {
+  grid-area: stories;
+}
+
+.foundation-card:nth-child(3) {
+  grid-area: phud;
+}
+
+@media (max-width: 992px) {
+  .foundation-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: none;
+  }
+
+  .scholar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .phud-grid {
+    grid-template-columns: 1fr;
+  }
 }

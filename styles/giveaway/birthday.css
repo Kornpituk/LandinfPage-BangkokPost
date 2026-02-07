@@ -1,0 +1,242 @@
+/* Container หลัก */
+.birthday-container {
+  background: rgba(154, 151, 151, 0); /* สีดำโปร่งแสง */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 731px; /* ปรับขนาดตามต้องการ */
+  margin: 0 auto;
+  margin-top: 40px;
+  color: white;
+  font-family: sans-serif;
+  position: relative;
+}
+
+/* Header */
+.b-header {
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+.red-dot {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: inline-block;
+}
+
+/* ส่วนแสดงข้อความ (กล่องขาวด้านบน) */
+.message-display-box {
+  background: #f0f0f0;
+  color: #333;
+  padding: 15px;
+  border-radius: 5px;
+  height: 250px; /* Fix ความสูงเพื่อให้ Scroll */
+  overflow-y: auto;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* Custom Scrollbar (เพื่อให้เหมือนในรูป) */
+.message-display-box::-webkit-scrollbar {
+  width: 8px;
+}
+.message-display-box::-webkit-scrollbar-track {
+  background: #ccc;
+  border-radius: 4px;
+}
+.message-display-box::-webkit-scrollbar-thumb {
+  background: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+
+/* รายการข้อความ */
+.msg-item {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: flex-start;
+}
+.msg-item .avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-right: 15px;
+}
+.msg-item .text-content p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  text-align: left;
+}
+.msg-item .text-content span {
+  font-weight: bold;
+  align-items: left;
+  display: flex;
+  justify-content: start;
+}
+
+/* ส่วน Avatar Selector */
+.avatar-selector {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s;
+}
+.color-option.active {
+  border-color: white;
+  transform: scale(1.2);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* Input Fields แบบขีดเส้นใต้ (Custom Style) */
+.input-group-line {
+  position: relative;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+.input-group-line label {
+  width: 80px; /* ความกว้าง Label */
+  font-weight: bold;
+  flex-shrink: 0;
+}
+.input-group-line input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  padding: 5px;
+  outline: none;
+}
+.input-group-line input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* ปุ่ม Submit ลูกศร */
+.submit-arrow-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+.submit-arrow-btn:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* --- ส่วนล่าง (Form Area) --- */
+.form-area {
+  background: rgba(154, 151, 151, 0); /* สีดำโปร่งแสง */
+  padding: 40px 30px;
+  color: white;
+  backdrop-filter: blur(5px); /* เบลอฉากหลังเล็กน้อยถ้าต้องการ */
+}
+
+/* จัด Layout แถวแนวนอน */
+.form-row {
+  display: flex;
+  align-items: center; /* จัดกึ่งกลางแนวตั้ง */
+  margin-bottom: 20px;
+}
+
+/* Label แบบ Fix ความกว้างเพื่อให้ Input ตรงกัน */
+.form-label-fixed {
+  width: 160px; /* ปรับความกว้าง Label ตรงนี้ */
+  font-weight: 500;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+/* Input แบบเส้น */
+.line-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+  padding: 5px 0;
+  font-size: 1rem;
+  outline: none;
+}
+.line-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Avatar Dots */
+.avatar-options {
+  display: flex;
+  gap: 15px;
+}
+.color-dot {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s;
+}
+.color-dot.active {
+  border-color: white;
+  transform: scale(1.2);
+}
+
+/* ส่วน Say Something (อยู่คนละบรรทัด) */
+.form-row-column {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.form-row-button {
+  display: flex;
+  justify-content: center;
+  padding-right: 40px;
+}
+.input-wrapper-full {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+.full-width {
+  width: 100%;
+}
+
+/* ปุ่ม Send Arrow */
+.send-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0 0 0 10px;
+  line-height: 1;
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+  transition: transform 0.2s;
+}
+.send-btn:hover {
+  transform: translateX(5px);
+}

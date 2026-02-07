@@ -1,0 +1,168 @@
+/* Container รวม */
+.donation-container {
+    max-width: 800px;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+/* --- TABS DESIGN --- */
+.donation-tabs {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+}
+
+/* เส้นสีน้ำเงินวิ่งตาม active */
+.tab-btn.active {
+    color: #0066cc; /* สีน้ำเงิน Bangkok Post */
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; /* ทับเส้น border-bottom */
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #0066cc;
+    border-radius: 2px 2px 0 0;
+}
+
+.tab-btn:hover {
+    color: #333;
+}
+
+/* --- CONTENT AREA --- */
+.tab-content-wrapper {
+    position: relative;
+    min-height: 350px;
+}
+
+.donation-content {
+    display: none; /* ซ่อนไว้ก่อน */
+    justify-content: center;
+    gap: 20px;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* แสดงเมื่อมี class active */
+.donation-content.active {
+    display: flex;
+    flex-wrap: wrap; /* รองรับมือถือ */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- CARDS DESIGN --- */
+.donate-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08); /* เงานุ่มๆ */
+    padding: 30px 30px;
+    width: 340px;
+    text-align: center;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bank-logo {
+    margin-bottom: 15px;
+}
+
+.bank-name {
+    font-size: 32px;
+    font-weight: normal;
+    margin: 0 0 5px 0;
+    color: #000000;
+}
+
+.branch-name {
+    color: #666;
+    margin: 0 0 20px 0;
+    font-size: 23px;
+}
+
+.acc-label {
+    font-size: 23px;
+    color: #888;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.donate-card .acc-number {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 5px 0 20px 0;
+    color: #000;
+}
+
+/* ปุ่ม COPY */
+.copy-btn {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.copy-btn:hover {
+    background-color: #444;
+}
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+/* QR Section */
+.qr-wrapper img {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 15px;
+}
+
+.qr-desc {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .donation-tabs {
+        flex-direction: column;
+    }
+    .tab-btn {
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+    }
+    .tab-btn.active::after {
+        display: none; /* ซ่อนเส้นล่างในมือถือ */
+    }
+    .tab-btn.active {
+        background-color: #f0f8ff; /* ใส่พื้นหลังอ่อนๆ แทน */
+    }
+}
