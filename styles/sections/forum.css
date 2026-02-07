@@ -1,0 +1,40 @@
+/* Section 4: Forum Banner */
+.forum-section {
+  padding: 60px 20px;
+  background: white;
+}
+
+.forum-banner {
+  background: black;
+  color: white;
+  padding: 80px 20px;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.forum-banner h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.speaker-carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.speaker-photo {
+  width: 150px;
+  height: 200px;
+  background: #555;
+  border-radius: 5px;
+}
+
+.carousel-arrow {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}

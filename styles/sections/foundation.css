@@ -1,0 +1,44 @@
+/* Section 3: Foundation Stories */
+.foundation-section {
+  padding: 60px 20px;
+  background: #f8f9fa;
+}
+
+.foundation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.foundation-card {
+  background: white;
+  padding: 30px;
+  border-left: 5px solid var(--bp-blue);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.foundation-card h3 {
+  color: var(--bp-navy);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.scholar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.scholar-item {
+  text-align: center;
+}
+
+.scholar-photo {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
