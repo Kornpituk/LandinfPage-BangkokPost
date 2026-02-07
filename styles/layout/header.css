@@ -1,0 +1,39 @@
+/* Section 1: Header with Logo and Image Gallery */
+.header-section {
+  background: var(--bp-navy);
+  height: 68px; /* ความสูงตามภาพ */
+  display: flex;
+  align-items: center; /* จัดกลางแนวตั้ง */
+}
+
+.bp-logo-top {
+  padding-left: 120px; /* ระยะชิดซ้ายแบบในภาพ */
+  display: flex;
+  align-items: center;
+}
+
+.bp-logo-top img {
+  width: 203px;
+  height: auto; /* ปล่อยให้ scale เอง */
+  display: block;
+}
+
+.bp-main-logo {
+  background: #f5f5f5;
+  padding: 60px 0;
+
+  display: flex;
+  align-items: center; /* กลางแนวตั้ง */
+  justify-content: center; /* กลางแนวนอน */
+}
+
+.logo-76 {
+  width: 538px;
+  height: auto;
+  display: block;
+}
+
+.logo-75 {
+  max-width: 400px;
+  width: 100%;
+}

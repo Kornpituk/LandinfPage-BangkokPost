@@ -1,0 +1,30 @@
+/* Section 5: Giveaway */
+.giveaway-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+}
+
+.giveaway-form {
+  background: white;
+  color: black;
+  max-width: 500px;
+  margin: 30px auto;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.color-option.active {
+  border-color: var(--bp-navy);
+}
