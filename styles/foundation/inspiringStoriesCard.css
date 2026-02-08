@@ -75,7 +75,7 @@
 }
 
 /* text INSPIRING STORIES*/
-.inspiring-stories-border {
+.section-divider {
   border-top: 1px solid #000;
   margin: 40px auto; /* ← ตัวนี้แหละ */
 }

@@ -1,17 +1,68 @@
-/* Footer */
+/* Footer Base Styles */
 .footer-section {
-  background: var(--bp-navy);
-  color: white;
-  padding: 30px 20px;
-  text-align: center;
+  background-color: var(--bp-navy, #1a1a1a); /* ใส่สีสำรองกรณี var ไม่ทำงาน */
+  color: #ffffff;
+  font-size: 14px;
 }
 
-.social-links {
-  margin-top: 20px;
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+  padding: 10px 0; /* เพิ่ม Padding แนวตั้งเล็กน้อย */
 }
 
-.social-links a {
-  color: white;
-  margin: 0 15px;
-  font-size: 1.5rem;
+/* จัดกลุ่ม Icon + Text ให้ดูดี */
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap; /* Desktop ให้ยาวไปเลย */
+}
+
+/* วงกลม Icon */
+.footer-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: var(--bp-navy, #1a1a1a);
+  display: flex;
+  align-items: center;
+  justify-content: center; /* จัดไอคอนกลางวงกลม */
+  flex-shrink: 0; /* ห้ามวงกลมบี้ */
+  /* padding-left: 8px; <-- ลบอันนี้ออกเพื่อให้ไอคอนอยู่กลางเป๊ะ */
+}
+
+.footer-icon i {
+  font-size: 14px; /* ปรับขนาดไอคอนให้สมดุลกับวงกลม */
+}
+
+.text-h7 {
+  margin: 0; /* ลบ margin เดิมของ p tag เพื่อการจัดระเบียบ */
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column; /* เรียงเป็นแนวตั้ง */
+    gap: 15px; /* ระยะห่างระหว่างบรรทัด */
+    padding: 20px 15px; /* เพิ่มขอบข้างกันชนจอ */
+    height: auto; /* ปล่อยความสูงอิสระ */
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    width: 100%;
+    justify-content: center; /* จัดเนื้อหา Icon+Text ให้อยู่กลางจอ */
+    text-align: center;
+    white-space: normal; /* ยอมให้ข้อความขึ้นบรรทัดใหม่ได้ */
+  }
+
+  .footer-right p {
+    line-height: 1.4; /* เพิ่มระยะบรรทัดให้อ่านง่ายถ้ายาวเกิน */
+  }
 }

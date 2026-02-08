@@ -5,6 +5,7 @@
   padding: 60px 20px;
 }
 
+
 .spin-game {
   background: var(--bp-navy);
   padding: 40px;
@@ -36,6 +37,14 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
   margin-top: 40px;
+}
+
+.promo-text-logo-bangkokpost {
+  max-height: 200px;
+  max-width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .promo-card {

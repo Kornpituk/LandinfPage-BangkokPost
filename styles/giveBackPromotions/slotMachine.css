@@ -1,0 +1,367 @@
+/* Import fonts (ตัวอย่าง) */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap");
+
+.serif-font {
+  font-family: "Playfair Display", serif;
+}
+.sans-font {
+  font-family: "Roboto", sans-serif;
+}
+
+
+.slot-game-section-rules {
+  color: #fff !important;
+  padding: 80px 0 120px 0;
+}
+.slot-game-section-rules .mx-auto {
+  width: 100%;
+}
+.bg-black {
+  background-color: #111 !important;
+}
+.bg-light {
+  background-color: #f4f4f4 !important;
+}
+
+/* --- Left Side: Rules --- */
+.mini-card {
+  width: 70px;
+  height: 80px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+}
+.mini-card img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.example-box p {
+  font-size: 23px;
+  text-align: center;
+}
+
+/* --- Right Side: Slot Machine CSS Art --- */
+.slot-machine-container {
+  position: relative;
+  width: 400px;
+  /* จัดให้อยู่กลาง */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ตัวเครื่องสีฟ้า */
+.machine-body {
+  background-color: #0066cc; /* สีฟ้าตามรูป */
+  width: 100%;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow:
+    0 10px 0 #004c99,
+    0 20px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+/* ไฟด้านบน */
+.lights-strip {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 20px;
+}
+.light {
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 5px white;
+}
+
+/* หน้าจอ Screen */
+.machine-screen {
+  background: #e0e0e0;
+  border: 5px solid #333;
+  border-radius: 10px;
+  padding: 10px;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Reels Grid */
+.reels-wrapper {
+  display: flex;
+  height: 100%;
+  gap: 5px;
+}
+.reel-col {
+  flex: 1;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden; /* ซ่อนส่วนที่เกิน */
+  position: relative;
+}
+
+/* Animation Strip */
+.reel-strip {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.1s ease-out; /* จะควบคุมด้วย JS */
+}
+.slot-icon {
+  width: 100%;
+  height: 140px; /* ปรับความสูงตามความเหมาะสม */
+  object-fit: contain;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Tray (ช่องรับเหรียญหลอกๆ) */
+.machine-tray {
+  height: 15px;
+  background: #004c99;
+  margin-top: 15px;
+  border-radius: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Lever (คันโยก) */
+.machine-lever {
+  position: absolute;
+  right: -40px;
+  top: 100px;
+  z-index: 1;
+}
+.lever-base {
+  width: 20px;
+  height: 40px;
+  background: #999;
+  position: absolute;
+  left: -10px;
+  border-radius: 0 5px 5px 0;
+}
+.lever-stick {
+  width: 10px;
+  height: 80px;
+  background: #ccc;
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  transform-origin: bottom center;
+  transition: transform 0.5s;
+}
+.lever-ball {
+  width: 30px;
+  height: 50px;
+  background: #222;
+  border-radius: 15px;
+  position: absolute;
+  top: -90px;
+  left: -10px;
+  cursor: pointer;
+  transition: top 0.5s;
+}
+
+/* Buttons */
+.controls-area .btn {
+  padding: 10px 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  font-family: "Playfair Display", serif; /* Font ตามปุ่มในรูป */
+  letter-spacing: 1px;
+  margin-top: 40px;
+}
+
+.btn-spin {
+  background-color: #0056b3;
+  color: white;
+  box-shadow: 0 4px 0 #003366;
+}
+.btn-spin:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #003366;
+}
+
+.btn-stop {
+  background-color: #222;
+  color: white;
+  box-shadow: 0 4px 0 #000;
+  margin-top: 40px;
+}
+.btn-stop:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #000;
+}
+
+/* Class สำหรับ Animation หมุน */
+.spinning .reel-strip {
+  animation: scrollReel 0.3s linear infinite;
+}
+@keyframes scrollReel {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  } /* เลื่อนภาพให้ดูเหมือนหมุน */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .machine-lever {
+    display: none; /* ซ่อนคันโยกในมือถือ */
+  }
+  .slot-machine-container {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+/* Container ของแต่ละวงล้อ */
+.reel-col {
+  height: 140px; /* ความสูงต้องเท่ากับความสูงของรูปภาพ 1 รูป */
+  overflow: hidden; /* ซ่อนส่วนเกิน */
+  background: white;
+  border-radius: 5px;
+  position: relative;
+}
+
+/* รูปภาพไอคอน */
+.slot-icon {
+  width: 100%;
+  height: 140px; /* fix ความสูงให้แน่นอน เพื่อให้ Library คำนวณถูก */
+  object-fit: contain;
+  padding: 15px;
+  display: block;
+}
+
+/* --- Override หรือ ปรับแต่ง Class ที่ Library สร้างมาให้ --- */
+/* (Library นี้จะสร้าง div class="slot-machine__container" ครอบรูปเราอีกที) */
+.slot-machine__container {
+  /* transition จะถูกคุมโดย JS */
+}
+
+/* สถานะตอนหยุด */
+.reel-col.stopped .slot-icon {
+  /* อาจใส่ Effect เพิ่มเติม */
+}
+
+/* ปรับปุ่ม Stop ให้เริ่มต้นเป็น Disabled */
+#stopBtn:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* --- RESPONSIVE MOBILE ADJUSTMENTS --- */
+@media (max-width: 991px) {
+  /* 1. ปรับส่วนกติกา (Rules) */
+  .slot-game-section-rules {
+    padding: 40px 40px !important; /* ลด Padding บนล่าง */
+    text-align: center;
+  }
+
+  .slot-game-section-rules .mx-auto {
+    width: 100%;
+  }
+
+  /* ปรับขนาดการ์ดตัวอย่างให้เล็กลง */
+  .mini-card {
+    width: 55px;
+    height: 65px;
+  }
+
+  .mini-card img {
+    padding: 5px;
+  }
+
+  .example-box p {
+    font-size: 18px; /* ลดขนาดฟอนต์ */
+  }
+
+  /* 2. ปรับตัวเครื่องสล็อต (Slot Machine) */
+  .col-lg-6.bg-light {
+    padding: 40px 15px !important; /* ลดพื้นที่ว่างรอบเครื่อง */
+  }
+
+  .slot-machine-container {
+    width: 100%;
+    max-width: 340px; /* จำกัดความกว้างไม่ให้เกินจอมือถือ */
+  }
+
+  /* ซ่อนคันโยกเพราะเกะกะในมือถือ */
+  .machine-lever {
+    display: none;
+  }
+
+  /* ปรับขนาดตัวเครื่อง */
+  .machine-body {
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow:
+      0 5px 0 #004c99,
+      0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  /* --- หัวใจสำคัญ: ย่อขนาดวงล้อและไอคอน --- */
+
+  /* ลดความสูงหน้าจอ */
+  .machine-screen {
+    height: 120px; /* ลดจาก 180px */
+    padding: 8px;
+    border-width: 3px;
+  }
+
+  /* ลดความสูงของ Column วงล้อ */
+  .reel-col {
+    height: 100px; /* ลดจาก 140px */
+  }
+
+  /* ลดขนาดรูปภาพไอคอนให้สัมพันธ์กัน */
+  .slot-icon {
+    height: 100px; /* ลดจาก 140px เพื่อให้สัดส่วนพอดี */
+    padding: 10px;
+  }
+
+  /* 3. ปรับปุ่มกด */
+  .controls-area .btn {
+    padding: 8px 25px;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+  /* ไฟด้านบนให้เล็กลงนิดนึง */
+  .light {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* สำหรับมือถือจอเล็กมาก (เช่น iPhone SE) */
+@media (max-width: 375px) {
+  .slot-machine-container {
+    max-width: 300px;
+  }
+
+  .machine-screen {
+    height: 100px;
+  }
+
+  .reel-col,
+  .slot-icon {
+    height: 80px;
+  }
+}

@@ -1,0 +1,203 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  margin: 0;
+}
+
+.speaker-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 60px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-viewport {
+  width: 100%;
+  max-width: 1000px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 40px; /* ระยะห่างระหว่างรูปใน PC */
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* ช่วงกำลัง animate */
+.carousel-track.is-animating .speaker-slide {
+  opacity: 0.15;
+  transform: scale(0.85);
+  filter: blur(6px);
+}
+
+.speaker-slide {
+  width: 280px; /* ขนาดใน PC */
+  height: 380px;
+  flex-shrink: 0;
+  position: relative; /* เพื่อให้ caption อิงตามรูป */
+
+  /* เอฟเฟกต์สำหรับตัวที่ไม่ active ใน PC */
+  filter: blur(4px);
+  opacity: 0.4;
+  transform: scale(0.9);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.speaker-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; /* เพิ่มมนนิดหน่อยให้ดูทันสมัย */
+}
+
+/* ตัวที่อยู่ตรงกลาง (Active) ใน PC จะชัด */
+.speaker-slide.active {
+  filter: none;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.speaker-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 10px;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.7)
+  ); /* ทำให้อ่านง่ายขึ้น */
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.speaker-caption .quote {
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.speaker-caption .name {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+/* arrows */
+.carousel-arrow {
+  background: none;
+  border: none;
+  font-size: 48px;
+  cursor: pointer;
+  color: #555;
+  padding: 0 20px;
+}
+
+.carousel-arrow:hover {
+  color: #000;
+}
+
+/* --- RESPONSIVE MOBILE (รูปเต็มหน้าจอ 100%) --- */
+@media (max-width: 768px) {
+  .speaker-carousel {
+    margin: 0; /* ลบ margin ทั้งหมดเพื่อให้เต็มจอ */
+    padding: 0; /* ลบ padding ทั้งหมด */
+    width: 100%;
+    max-width: 100%;
+    display: block; /* เปลี่ยนจาก flex เป็น block */
+    position: relative;
+  }
+
+  .carousel-viewport {
+    width: 100vw; /* ใช้ viewport width เต็ม 100% */
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    gap: 0; /* ไม่มีช่องว่างระหว่างสไลด์ */
+  }
+
+  .speaker-slide {
+    flex: 0 0 100vw; /* กว้างเต็ม viewport */
+    width: auto;
+    max-width: 360px;
+    height: auto; /* ความสูงเต็มหน้าจอ หรือจะใช้ auto ก็ได้ */
+    max-height: 100vh;
+    margin: 0 auto;
+
+    /* ล้างค่าเอฟเฟกต์ PC ทั้งหมด */
+    filter: none !important;
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .speaker-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ให้รูปเต็มกรอบโดยไม่เสียสัดส่วน */
+    border-radius: 0; /* ลบมุมโค้งในมือถือเพื่อให้เต็มจอ */
+    display: block;
+  }
+
+  /* ย้ายลูกศรมาวางทับบนรูป (overlay) */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    padding: 10px;
+    font-size: 36px;
+    color: rgba(255, 255, 255, 0.8); /* ทำให้มองเห็นบนรูป */
+    background: rgba(0, 0, 0, 0.3); /* พื้นหลังโปร่งแสงเล็กน้อย */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .carousel-arrow.left {
+    left: 10px;
+  }
+
+  .carousel-arrow.right {
+    right: 10px;
+  }
+
+  .carousel-arrow:hover {
+    color: rgba(255, 255, 255, 1);
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  /* ปรับแต่ง Caption ให้อ่านง่ายบนรูปเต็มจอ */
+  .speaker-caption {
+    background: linear-gradient(
+      transparent,
+      rgba(0, 0, 0, 0.85)
+    ); /* เข้มขึ้นเพื่อให้อ่านง่าย */
+    max-width: 150px;
+    padding: 20px;
+  }
+}

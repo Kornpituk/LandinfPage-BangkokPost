@@ -4,6 +4,10 @@
 @import url("styles/layout/footer.css");
 @import url("styles/sections/gallery.css");
 @import url("styles/sections/giving.css");
+/* @import url("styles/base/gallery.css"); */
+/* @import url("styles/base/responsive.css"); */
+@import url("styles/base/Utilities.css");
+
 
 /* Foundation */
 @import url("styles/sections/foundation.css");
@@ -28,6 +32,8 @@
 
 /* Promotions */
 @import url("styles/sections/promotions.css");
+/* slot machine */
+@import url("styles/giveBackPromotions/slotMachine.css");
 
 /* Help */
 @import url("styles/sections/help.css");

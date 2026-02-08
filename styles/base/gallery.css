@@ -1,0 +1,205 @@
+/**
+ * Gallery Component
+ * Swiper carousel สำหรับแสดงภาพหมุน
+ */
+
+.section-gallery {
+  padding: 0;
+  background: var(--color-dark);
+}
+
+/* Gallery Swiper Container */
+.gallery-swiper {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .gallery-swiper {
+    height: 500px;
+  }
+}
+
+@media (min-width: 992px) {
+  .gallery-swiper {
+    height: 600px;
+  }
+}
+
+/* Gallery Card (Slide) */
+.gallery-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition-transform);
+}
+
+/* Gallery Image */
+.gallery-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: var(--transition-transform);
+}
+
+/* Lazy loading placeholder */
+.gallery-image.swiper-lazy {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-200) 25%,
+    var(--color-gray-300) 50%,
+    var(--color-gray-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Gallery Overlay */
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  transition: var(--transition-opacity);
+  pointer-events: none;
+}
+
+/* Gallery Title */
+.gallery-title {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: var(--spacing-6);
+  right: var(--spacing-6);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.title-line {
+  display: block;
+}
+
+/* Hover Effects (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  .gallery-card:hover .gallery-image {
+    transform: scale(1.05);
+  }
+
+  .gallery-card:hover .gallery-overlay {
+    opacity: 0.9;
+  }
+}
+
+/* Swiper Navigation */
+.gallery-swiper .swiper-button-prev,
+.gallery-swiper .swiper-button-next {
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.5);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-full);
+  transition: var(--transition-all);
+  display: none; /* Hidden on mobile */
+}
+
+.gallery-swiper .swiper-button-prev:hover,
+.gallery-swiper .swiper-button-next:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.gallery-swiper .swiper-button-prev::after,
+.gallery-swiper .swiper-button-next::after {
+  font-size: var(--font-size-lg);
+}
+
+/* Show on tablet and up */
+@media (min-width: 768px) {
+  .gallery-swiper .swiper-button-prev,
+  .gallery-swiper .swiper-button-next {
+    display: flex;
+  }
+}
+
+/* Swiper Pagination */
+.gallery-swiper .swiper-pagination {
+  bottom: var(--spacing-4);
+}
+
+.gallery-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: var(--color-white);
+  opacity: 0.5;
+  transition: var(--transition-all);
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: var(--color-primary);
+  transform: scale(1.2);
+}
+
+/* Active slide */
+.swiper-slide-active .gallery-title {
+  animation: slideInUp 0.6s var(--transition-timing);
+}
+
+/* Accessibility */
+.gallery-card:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+}
+
+/* RTL Support */
+[dir="rtl"] .gallery-title {
+  left: auto;
+  right: var(--spacing-6);
+}
+
+/* Performance optimization */
+.gallery-swiper .swiper-slide {
+  will-change: transform;
+}
+
+.gallery-swiper .swiper-slide:not(.swiper-slide-active) {
+  pointer-events: none;
+}
+
+/* Touch improvements */
+@media (hover: none) and (pointer: coarse) {
+  .gallery-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .gallery-swiper {
+    touch-action: pan-y pinch-zoom;
+  }
+}

@@ -4,31 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bangkok Post - 76th Anniversary</title>
-    <!-- Bootstrap 5 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <!-- Preconnect to CDNs for better performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin />
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://api.qrserver.com" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <!-- Critical CSS - inline ไว้เพื่อ first paint ที่เร็ว -->
+    <style>
+      /* Critical CSS จะมีเฉพาะส่วนที่จำเป็นต่อการแสดงผล above-the-fold */
+      :root {
+        --color-primary: #0066cc;
+        --color-secondary: #cc3333;
+        --color-accent: #f0ad4e;
+        --color-dark: #1a1a1a;
+        --color-light: #ffffff;
+        --color-gray: #f5f5f5;
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
+        --font-size-8xl: 7rem; /* 112px  h0*/
+        --font-size-7xl: 6rem; /* 96px  h0*/
+        --font-size-6xl: 5rem; /* 80px  h0*/
+        --font-size-5xl: 3.125rem; /* 50px  h1*/
+        --font-size-4xl: 2.5rem; /* 40px  h2*/
+        --font-size-3xl: 2.125rem; /* 34px h3*/
+        --font-size-2xl: 1.875rem; /* 30px  h4*/
+        --font-size-xl: 1.5rem; /* 24px  h5*/
+        --font-size-lg: 1.25rem; /* 20px h6*/
+        --font-size-base: 1rem; /* 16px */
+        --font-size-sm: 0.875rem; /* 14px */
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        --font-heading: "Garet-Heavy", sans-serif;
+        --font-body: "Garet-Book", sans-serif;
+        --font-serif: "utopia-std", serif;
 
+        --spacing-xs: 0.5rem;
+        --spacing-sm: 1rem;
+        --spacing-md: 2rem;
+        --spacing-lg: 3rem;
+        --spacing-xl: 4rem;
+
+        --container-max: 1200px;
+        --border-radius: 8px;
+        --transition-speed: 0.3s;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-body);
+        line-height: 1.6;
+        color: var(--color-dark);
+        overflow-x: hidden;
+      }
+
+      /* Loading state */
+      .loading {
+        opacity: 0;
+        transition: opacity 0.3s ease-in;
+      }
+
+      .loaded {
+        opacity: 1;
+      }
+    </style>
+
+    <!-- Fonts - preload critical fonts -->
     <link
       rel="preload"
       href="fonts/Garet-Book.woff2"
@@ -43,6 +89,41 @@
       type="font/woff2"
       crossorigin
     />
+    <link rel="stylesheet" href="https://use.typekit.net/btv0cat.css" />
+
+    <!-- Use font-display -->
+    <style>
+      @font-face {
+        font-family: "Garet-Book";
+        src: url("fonts/Garet-Book.woff2") format("woff2");
+        font-display: swap; /* Show fallback immediately */
+        font-weight: 600;
+      }
+      @font-face {
+        font-family: "Garet-Heavy";
+        src: url("fonts/Garet-Heavy.woff2") format("woff2");
+        font-display: swap; /* Show fallback immediately */
+        font-weight: 900;
+      }
+    </style>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- Bootstrap Icons -->
     <link
@@ -57,133 +138,177 @@
     <!-- Section 1: Header  -->
     <section class="header-section">
       <div class="bp-logo-top">
-        <img src="/assets/logo/Logo-bangkokpost3.png" alt="Bangkok Post logo" />
+        <img
+          src="/assets/logo/Logo-bangkokpost3.png"
+          width="200"
+          height="50"
+          loading="eager"
+          alt="Bangkok Post logo"
+        />
       </div>
     </section>
     <!-- Section 1:  Logo -->
-    <section class="bp-main-logo">
+    <section class="bp-main-logo" style="background: #f0f0f0">
       <img
         src="assets/logo/logo76year (1).svg"
         alt="Bangkok Post 76th Anniversary Logo"
         class="logo-76"
+        width="300"
+        height="200"
+        loading="eager"
       />
     </section>
-
-    <!-- Gallery Section -->
-    <section class="gallery-section container-fluid py-4">
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div
-            class="swiper-slide gallery-item"
-            data-target="#foundation"
-            data-swiper-autoplay="5000"
-          >
-            <img
-              class="swiper-lazy"
-              src="/assets/colour/_MG_5415_RE.png"
-              alt=""
-            />
-            <div class="gallery-overlay"></div>
-            <h3>BANGKOK POST<br />FOUNDATION</h3>
+    <!-- Main Content -->
+    <main id="main-content">
+      <!-- Gallery Section -->
+      <section
+        class="gallery-section py-4"
+        aria-label="Feature Gallery"
+        style="background: #f0f0f0"
+      >
+        <div class="swiper gallery-swiper">
+          <div class="swiper-wrapper">
+            <!-- Gallery Item 1 -->
+            <article
+              class="swiper-slide gallery-item"
+              data-target="#foundation"
+              data-swiper-autoplay="5000"
+            >
+              <img
+                class="swiper-lazy"
+                src="/assets/colour/_MG_5415_RE.png"
+                alt="Bangkok Post Foundation activities"
+                loading="lazy"
+              />
+              <div class="swiper-lazy-preloader"></div>
+              <div class="gallery-overlay"></div>
+              <h3 class="gallery-title">
+                <span class="title-line">Bangkok Post</span>
+                <span class="title-line">Foundation</span>
+              </h3>
+            </article>
+            <!-- Gallery Item 2 -->
+            <article class="swiper-slide gallery-item" data-target="#forum">
+              <img
+                class="swiper-lazy"
+                src="/assets/BW/5-1200x857.jpg"
+                alt="Bangkok Post Forum 2022"
+                loading="lazy"
+              />
+              <div class="swiper-lazy-preloader"></div>
+              <div class="gallery-overlay"></div>
+              <h3 class="gallery-title">
+                <span class="title-line">Bangkok Post</span>
+                <span class="title-line">Forum 2022</span>
+              </h3>
+            </article>
+            <!-- Gallery Item 3 -->
+            <article
+              class="swiper-slide gallery-item"
+              data-target="#anniversary"
+            >
+              <img
+                class="swiper-lazy"
+                src="/assets/colour/BKP_Building.png"
+                alt="Anniversary Wishes"
+                loading="lazy"
+              />
+              <div class="swiper-lazy-preloader"></div>
+              <div class="gallery-overlay"></div>
+              <h3 class="gallery-title">
+                <span class="title-line">Live Anniversary</span>
+                <span class="title-line">Wishes</span>
+              </h3>
+            </article>
+            <!-- Gallery Item 4 -->
+            <article class="swiper-slide gallery-item" data-target="#giveaway">
+              <img
+                class="swiper-lazy"
+                src="/assets/colour/Thailand journey_MU-04.jpg"
+                alt="76th Anniversary Giveaway"
+                loading="lazy"
+              />
+              <div class="swiper-lazy-preloader"></div>
+              <div class="gallery-overlay"></div>
+              <h3 class="gallery-title">
+                <span class="title-line">76th Anniversary</span>
+                <span class="title-line">Giveaway</span>
+              </h3>
+            </article>
           </div>
 
-          <div class="swiper-slide gallery-item" data-target="#forum">
-            <img class="swiper-lazy" src="/assets/BW/5-1200x857.jpg" alt="" />
-            <div class="gallery-overlay"></div>
-            <h3>BANGKOK POST<br />FORUM 2922</h3>
-          </div>
-
-          <div class="swiper-slide gallery-item" data-target="#anniversary">
-            <img
-              class="swiper-lazy"
-              src="/assets/colour/BKP_Building.png"
-              alt=""
-            />
-            <div class="gallery-overlay"></div>
-            <h3>LIVE ANNIVERSARY<br />WISHES</h3>
-          </div>
-
-          <div class="swiper-slide gallery-item" data-target="#giveaway">
-            <img
-              class="swiper-lazy"
-              src="/assets/colour/Thailand journey_MU-04.jpg"
-              alt=""
-            />
-            <div class="gallery-overlay"></div>
-            <h3>76TH ANNIVERSARY<br />GIVEAWAY</h3>
-          </div>
+          <!-- Navigation -->
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section 2: 4 Decades of Giving -->
-    <section class="giving-section">
-      <div class="container">
+      <!-- Section 2: 4 Decades of Giving -->
+      <section class="giving-quote-section">
+        <div class="quote-lines"></div>
+
         <div class="giving-quote">
-          <p class="mb-4">
-            <span class="quote-mark">"</span>
-            Right from its inception on 1 August 1946, the Bangkok Post had<br />
-            a clear vision and determination to inform the public without<br />
-            prejudice while at the same time serving the kingdom<br />
-            and the interests of its people.
-          </p>
-          <p>
-            For over three quarters of a century, the newspaper has gone<br />
-            through highs and lows owing to the inevitable consequences of<br />
-            repeated economic crises, political turmoil, media disruption,
-            and<br />
-            most recently, the Covid-19 pandemic.
-          </p>
-          <span class="quote-mark">"</span>
-        </div>
-      </div>
-      <div class="giving-hero">
-        <!-- <h2>4 DECADES OF GIVING</h2> -->
-      </div>
-    </section>
+          <span class="quote-mark quote-start">“</span>
 
-    <!-- Section 3: Foundation Stories -->
-    <section id="foundation" class="foundation-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="top-foundation-grid">
-              <!-- รูป 2x2 -->
+          <p class="text-white text-h5">
+            Right from its inception on 1 August 1946, the Bangkok Post had a
+            clear vision and determination to inform the public without
+            prejudice while at the same time serving the kingdom and the
+            interests of its people.
+          </p>
+
+          <p class="text-white text-h5">
+            For over three quarters of a century, the newspaper has gone through
+            highs and lows owing to the inevitable consequences of repeated
+            economic crises, political turmoil, media disruption, and most
+            recently, the Covid-19 pandemic.
+          </p>
+
+          <span class="quote-mark quote-end">”</span>
+        </div>
+
+        <img
+          src="/assets/pen.png"
+          loading="lazy"
+          aria-hidden="true"
+          alt="Hand writing"
+          class="quote-hand"
+        />
+      </section>
+      <!-- Decades of Giving -->
+      <section class="text-white giving-hero" style="background: #f0f0f0">
+        <h1>4 DECADES OF GIVING</h1>
+      </section>
+
+      <!-- Section 3: Foundation Stories -->
+      <section
+        id="foundation"
+        class="foundation-section"
+        style="background: #f0f0f0"
+      >
+        <div class="container">
+          <!-- Foundation Grid -->
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- Photo Grid -->
               <div class="photo-2x2">
                 <div class="scholar-photo">
                   <img
-                    src="/assets/BW/IMG_1028_BW.png"
+                    src="/assets/BKP foundation-01.png"
                     alt="Bangkok Post Foundation Scholar"
                     class="scholar-photo"
-                  />
-                </div>
-                <div class="scholar-photo">
-                  <img
-                    src="/assets/BW/290313 Benjamas04_BW.png"
-                    alt="Bangkok Post Foundation Scholar"
-                    class="scholar-photo"
-                  />
-                </div>
-                <div class="scholar-photo">
-                  <img
-                    src="/assets/BW/LD_Pic-01_BW.png"
-                    alt="Bangkok Post Foundation Scholar"
-                    class="scholar-photo"
-                  />
-                </div>
-                <div class="scholar-photo">
-                  <img
-                    src="/assets/BW/1990_Muang District_BW.png"
-                    alt="Bangkok Post Foundation Scholar"
-                    class="scholar-photo"
+                    alt="Scholar receiving support"
+                    loading="lazy"
                   />
                 </div>
               </div>
-
-              <!-- Text -->
+            </div>
+            <div class="col-sm-6">
+              <!-- Foundation Info -->
               <div class="bangkok-post-foundation-card-text">
                 <h3>BANGKOK POST FOUNDATION</h3>
-                <p class="mt-3">
+                <p class="mt-3 text-h5">
                   In terms of its social contributions,<br />
                   The Bangkok Post Foundation,<br />
                   formed in 1982, has provided<br />
@@ -197,780 +322,893 @@
                 </p>
               </div>
             </div>
-          </div>
-          <div class="col-sm-12">
-            <div class="inspiring-stories-border"></div>
-            <div class="">
-              <div class="inspiring-stories-text">
-                <h3>"INSPIRING STORIES"</h3>
-                <p>
-                  Over the past 40 years since its establishment, the Bangkok
-                  Post Foundation has sponsored approximately 3,700
-                  scholarships. The foundation is proud of the students’
-                  successes. Three hundred and seventy students have achieved
-                  PhDs, Master’s Degree or Bachelor’s Degree with First Class
-                  Honours, Second Class Honours and outstanding grades.
-                </p>
-                <p>
-                  Here are some messages from the Bangkok Post Foundation’s
-                  scholarship alumni.
-                </p>
+
+            <!-- Inspiring Stories -->
+            <div class="col-sm-12">
+              <div class="section-divider"></div>
+              <div class="">
+                <div class="inspiring-stories-text">
+                  <h3>"INSPIRING STORIES"</h3>
+                  <p class="text-h5">
+                    Over the past 40 years since its establishment, the Bangkok
+                    Post Foundation has sponsored approximately 3,700
+                    scholarships. The foundation is proud of the students’
+                    successes. Three hundred and seventy students have achieved
+                    PhDs, Master’s Degree or Bachelor’s Degree with First Class
+                    Honours, Second Class Honours and outstanding grades.
+                  </p>
+                  <p class="text-h5 mb-4">
+                    Here are some messages from the Bangkok Post Foundation’s
+                    scholarship alumni.
+                  </p>
+                </div>
+                <div class="scholar-grid mt-4">
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Ampika.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Miss Ampika Pukam
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name">Miss Ampika Pukam</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Anosorn.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Mr. Anusorn Pinsuwan
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name">Mr. Anusorn Pinsuwan</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Kalyakorn.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Mr. Nattapum Seangprasit
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name"
+                          >Mr. Nattapum Seangprasit</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Nattapum.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Mr. Khatawut Wisreethippakorn
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name"
+                          >Mr. Khatawut Wisreethippakorn</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Pornprom.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Mr. Saharat Kluekij
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name">Mr. Saharat Kluekij</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Saharat.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Dr. Kalyakorn Wongrak
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name">Dr. Kalyakorn Wongrak</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Thundorn.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Mr. Thundorn Parkminakorn
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name"
+                          >Mr. Thundorn Parkminakorn</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="scholar-item">
+                    <div class="scholar-photo">
+                      <img
+                        src="/assets/pic/Warin.png"
+                        alt="Bangkok Post Foundation Scholar"
+                        class="scholar-photo"
+                      />
+                      <div class="scholar-name-static overlay-name">
+                        Dr. Warin Yuyangket
+                      </div>
+                      <div class="scholar-overlay">
+                        <span class="scholar-desc">
+                          “LOREMLOREMLOREM<br />LOREM LOREM”
+                        </span>
+                        <span class="scholar-name">Dr. Warin Yuyangket</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="scholar-grid mt-4">
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Ampika.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Miss Ampika Pukam
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name">Miss Ampika Pukam</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Anosorn.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Mr. Anusorn Pinsuwan
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name">Mr. Anusorn Pinsuwan</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Kalyakorn.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Mr. Nattapum Seangprasit
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name">Mr. Nattapum Seangprasit</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Nattapum.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Mr. Khatawut Wisreethippakorn
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name"
-                        >Mr. Khatawut Wisreethippakorn</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Pornprom.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Mr. Saharat Kluekij
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name">Mr. Saharat Kluekij</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Saharat.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Dr. Kalyakorn Wongrak
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name">Dr. Kalyakorn Wongrak</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Thundorn.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Mr. Thundorn Parkminakorn
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name"
-                        >Mr. Thundorn Parkminakorn</span
-                      >
-                    </div>
-                  </div>
-                </div>
-                <div class="scholar-item">
-                  <div class="scholar-photo">
-                    <img
-                      src="/assets/pic/Warin.png"
-                      alt="Bangkok Post Foundation Scholar"
-                      class="scholar-photo"
-                    />
-                    <div class="scholar-name-static overlay-name">
-                      Dr. Warin Yuyangket
-                    </div>
-                    <div class="scholar-overlay">
-                      <span class="scholar-desc">
-                        “LOREMLOREMLOREM<br />LOREM LOREM”
-                      </span>
-                      <span class="scholar-name">Dr. Warin Yuyangket</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <div class="section-divider"></div>
             </div>
-            <div class="inspiring-stories-border"></div>
-          </div>
-          <div class="col-sm-12">
-            <div class="row">
-              <div class="col-6">
-                <div class="phud-hong-foundation-card-text">
-                  <h3>PHUD HONG FOUNDATION</h3>
+            <!-- Phud Hong Foundation -->
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <div class="phud-hong-foundation-card-text">
+                    <h3>PHUD HONG FOUNDATION</h3>
 
-                  <p class="mt-3">
-                    Besides helping children in need, the Bangkok Post has
-                    reached out to lepers through the Phud Hong Lepers
-                    Foundation, founded in 1974.
-                  </p>
+                    <p class="mt-3 text-h5">
+                      Besides helping children in need, the Bangkok Post has
+                      reached out to lepers through the Phud Hong Lepers
+                      Foundation, founded in 1974.
+                    </p>
 
-                  <p>
-                    Over the past 48 years, the foundation has built a
-                    kindergarten for lepers’ children, built two fully equipped
-                    60-bed hospital wards, provided equipment for minor
-                    operations, built an all-purpose building, coordinated with
-                    government authorities in building a reservoir, set up
-                    vocational training for patients and their children, and
-                    much more.
-                  </p>
+                    <p class="text-h5">
+                      Over the past 48 years, the foundation has built a
+                      kindergarten for lepers’ children, built two fully
+                      equipped 60-bed hospital wards, provided equipment for
+                      minor operations, built an all-purpose building,
+                      coordinated with government authorities in building a
+                      reservoir, set up vocational training for patients and
+                      their children, and much more.
+                    </p>
 
-                  <p>
-                    At present, 105 patients and their family members are
-                    officially under the care of the Phud Hong Lepers
-                    Foundation.
-                  </p>
+                    <p class="text-h5">
+                      At present, 105 patients and their family members are
+                      officially under the care of the Phud Hong Lepers
+                      Foundation.
+                    </p>
 
-                  <p>
-                    We will continue our commitment to serving society while
-                    keeping our readers abreast of the latest developments at
-                    home and worldwide for many years to come.
-                  </p>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="phud-photo">
-                  <div class="slider">
-                    <img
-                      src="/assets/BW/Picture 369_BW.png"
-                      class="slide active"
-                    />
-                    <img
-                      src="/assets/BW/1990_Muang District_BW.png"
-                      class="slide"
-                    />
-                    <img
-                      src="/assets/BW/Thailand journey_MU-04_BW.png"
-                      class="slide"
-                    />
-                    <img src="/assets/BW/IMG_1028_BW.png" class="slide" />
+                    <p class="text-h5">
+                      We will continue our commitment to serving society while
+                      keeping our readers abreast of the latest developments at
+                      home and worldwide for many years to come.
+                    </p>
                   </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                  <div class="phud-photo">
+                    <div class="slider">
+                      <img
+                        src="/assets/BW/Picture 369_BW.png"
+                        class="slide active"
+                      />
+                      <img
+                        src="/assets/BW/1990_Muang District_BW.png"
+                        class="slide"
+                      />
+                      <img
+                        src="/assets/BW/Thailand journey_MU-04_BW.png"
+                        class="slide"
+                      />
+                      <img src="/assets/BW/IMG_1028_BW.png" class="slide" />
+                    </div>
 
-                  <div class="dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
-                    <span class="dot" data-index="3"></span>
+                    <div class="dots">
+                      <span class="dot active" data-index="0"></span>
+                      <span class="dot" data-index="1"></span>
+                      <span class="dot" data-index="2"></span>
+                      <span class="dot" data-index="3"></span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section 4: Forum 2022 -->
-    <section id="forum" id="forum" class="forum-section">
-      <div class="container">
-        <div class="text-center">
-          <h2>BANGKOK POST FORUM 2022</h2>
-          <h3>Thailand Ready: Moving onto the Next Chapter</h3>
-        </div>
-      </div>
-
-      <div class="forum-banner">
-        <h3>BANNER</h3>
-      </div>
-
-      <div class="container">
-        <div class="forum-banner-text">
-          <p>
-            To mark the Bangkok Post’s 76th birthday, an array of names<br />
-            from culture, science and politics are celebrating the positive
-            and<br />
-            powerful impact we’ve made to the society.
-          </p>
-
-          <div class="speaker-carousel">
-            <button class="carousel-arrow" id="prevBtn">‹</button>
-
-            <div class="carousel-viewport">
-              <div class="carousel-track" id="carouselTrack">
-                <div class="speaker-slide">
-                  <img src="/assets/pic/Ampika.png" />
-                  <div class="speaker-caption">
-                    <p class="quote">
-                      “LOREM LOREM LOREM<br />
-                      LOREM LOREM LOREM”
-                    </p>
-                    <span class="name">K. AMPIKA</span>
-                  </div>
-                </div>
-                <div class="speaker-slide">
-                  <img src="/assets/pic/Anosorn.png" />
-                  <div class="speaker-caption">
-                    <p class="quote">
-                      “LOREM LOREM LOREM<br />
-                      LOREM LOREM LOREM”
-                    </p>
-                    <span class="name">K. AMPIKA</span>
-                  </div>
-                </div>
-                <div class="speaker-slide">
-                  <img src="/assets/pic/Saharat.png" />
-                  <div class="speaker-caption">
-                    <p class="quote">
-                      “LOREM LOREM LOREM<br />
-                      LOREM LOREM LOREM”
-                    </p>
-                    <span class="name">K. AMPIKA</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <button class="carousel-arrow" id="nextBtn">›</button>
+      <!-- Section 4: Forum 2022 -->
+      <section
+        id="forum"
+        id="forum"
+        class="forum-section"
+        style="background: #f0f0f0"
+      >
+        <div class="container">
+          <div class="text-center">
+            <h2>BANGKOK POST FORUM 2022</h2>
+            <h3>Thailand Ready: Moving onto the Next Chapter</h3>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Section 5: 76th Anniversary Giveaway -->
-    <section id="anniversary" class="giveaway-section">
-      <div class="container">
-        <h2>Join us in celebrating the Bangkok Post’s<br />76th Anniversary</h2>
-        <h2>Get a chance to win Paper Free Trial</h2>
+        <div class="forum-banner">
+          <h3>BANNER</h3>
+        </div>
 
-        <section class="birthday-container">
-          <div class="b-header">
-            <span class="red-dot"></span> Live / Birthday Messages
-          </div>
+        <div class="container">
+          <div class="forum-banner-text">
+            <p class="text-h5">
+              To mark the Bangkok Post’s 76th birthday, an array of names<br />
+              from culture, science and politics are celebrating the positive
+              and<br />
+              powerful impact we’ve made to the society.
+            </p>
 
-          <div class="message-display-box" id="messageDisplayBox">
-            <div class="message-wrapper">
-              <div class="msg-item">
-                <div class="avatar" style="background-color: #0066cc"></div>
-                <div class="text-content">
-                  <span>NAME</span>
-                  <p>
-                    I have been reading you for more than a decade! May you
-                    continue to inform on issues we never even knew existed!
-                  </p>
+            <div class="speaker-carousel">
+              <button class="carousel-arrow" id="prevBtn">‹</button>
+
+              <div class="carousel-viewport">
+                <div class="carousel-track" id="carouselTrack">
+                  <div class="speaker-slide">
+                    <img src="/assets/pic/Ampika.png" />
+                    <div class="speaker-caption">
+                      <p class="quote">
+                        “LOREM LOREM LOREM<br />
+                        LOREM LOREM LOREM”
+                      </p>
+                      <span class="name">K. AMPIKA</span>
+                    </div>
+                  </div>
+                  <div class="speaker-slide">
+                    <img src="/assets/pic/Anosorn.png" />
+                    <div class="speaker-caption">
+                      <p class="quote">
+                        “LOREM LOREM LOREM<br />
+                        LOREM LOREM LOREM”
+                      </p>
+                      <span class="name">K. AMPIKA</span>
+                    </div>
+                  </div>
+                  <div class="speaker-slide">
+                    <img src="/assets/pic/Saharat.png" />
+                    <div class="speaker-caption">
+                      <p class="quote">
+                        “LOREM LOREM LOREM<br />
+                        LOREM LOREM LOREM”
+                      </p>
+                      <span class="name">K. AMPIKA</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <div class="msg-item">
-                <div class="avatar" style="background-color: #cc3333"></div>
-                <div class="text-content">
-                  <span>NAME</span>
-                  <p>
-                    Happy 76th Birthday to the Bangkok Post! This is my
-                    favourite source of news.
-                  </p>
-                </div>
-              </div>
-
-              <div class="msg-item">
-                <div class="avatar" style="background-color: #f0ad4e"></div>
-                <div class="text-content">
-                  <span>NAME</span>
-                  <p>
-                    My essential reads every morning - Congratulations on your
-                    76th birthday.
-                  </p>
-                </div>
-              </div>
-
-              <div class="msg-item">
-                <div class="avatar" style="background-color: #0066cc"></div>
-                <div class="text-content">
-                  <span>NAME</span>
-                  <p>
-                    I have been reading you for more than a decade! May you
-                    continue to inform on issues we never even knew existed!
-                  </p>
-                </div>
-              </div>
-
-              <div class="msg-item">
-                <div class="avatar" style="background-color: #cc3333"></div>
-                <div class="text-content">
-                  <span>NAME</span>
-                  <p>
-                    Happy 76th Birthday to the Bangkok Post! This is my
-                    favourite source of news.
-                  </p>
-                </div>
-              </div>
-
-              <div class="msg-item">
-                <div class="avatar" style="background-color: #f0ad4e"></div>
-                <div class="text-content">
-                  <span>NAME</span>
-                  <p>
-                    My essential reads every morning - Congratulations on your
-                    76th birthday.
-                  </p>
-                </div>
-              </div>
+              <button class="carousel-arrow" id="nextBtn">›</button>
             </div>
           </div>
+        </div>
+      </section>
 
-          <form id="birthdayForm" class="form-area">
-            <div class="form-row">
-              <label class="form-label-fixed">Choose Your Avatar</label>
-              <div class="avatar-options">
-                <div
-                  class="color-dot active"
-                  data-color="#0d6efd"
-                  style="background: #0d6efd"
-                ></div>
-                <div
-                  class="color-dot"
-                  data-color="#dc3545"
-                  style="background: #dc3545"
-                ></div>
-                <div
-                  class="color-dot"
-                  data-color="#ffc107"
-                  style="background: #ffc107"
-                ></div>
-                <div
-                  class="color-dot"
-                  data-color="#198754"
-                  style="background: #198754"
-                ></div>
+      <!-- Section 5: 76th Anniversary Giveaway -->
+      <section id="anniversary" class="giveaway-section">
+        <div class="container">
+          <h2 class="text-white">
+            Join us in celebrating the Bangkok Post’s<br />76th Anniversary
+          </h2>
+          <h2 class="text-white">Get a chance to win Paper Free Trial</h2>
+
+          <section class="birthday-container">
+            <div class="b-header">
+              <span class="red-dot"></span> Live / Birthday Messages
+            </div>
+
+            <div class="message-display-box" id="messageDisplayBox">
+              <div class="message-wrapper">
+                <div class="msg-item">
+                  <div class="avatar" style="background-color: #0066cc"></div>
+                  <div class="text-content">
+                    <span>NAME</span>
+                    <p>
+                      I have been reading you for more than a decade! May you
+                      continue to inform on issues we never even knew existed!
+                    </p>
+                  </div>
+                </div>
+
+                <div class="msg-item">
+                  <div class="avatar" style="background-color: #cc3333"></div>
+                  <div class="text-content">
+                    <span>NAME</span>
+                    <p>
+                      Happy 76th Birthday to the Bangkok Post! This is my
+                      favourite source of news.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="msg-item">
+                  <div class="avatar" style="background-color: #f0ad4e"></div>
+                  <div class="text-content">
+                    <span>NAME</span>
+                    <p>
+                      My essential reads every morning - Congratulations on your
+                      76th birthday.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="msg-item">
+                  <div class="avatar" style="background-color: #0066cc"></div>
+                  <div class="text-content">
+                    <span>NAME</span>
+                    <p>
+                      I have been reading you for more than a decade! May you
+                      continue to inform on issues we never even knew existed!
+                    </p>
+                  </div>
+                </div>
+
+                <div class="msg-item">
+                  <div class="avatar" style="background-color: #cc3333"></div>
+                  <div class="text-content">
+                    <span>NAME</span>
+                    <p>
+                      Happy 76th Birthday to the Bangkok Post! This is my
+                      favourite source of news.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="msg-item">
+                  <div class="avatar" style="background-color: #f0ad4e"></div>
+                  <div class="text-content">
+                    <span>NAME</span>
+                    <p>
+                      My essential reads every morning - Congratulations on your
+                      76th birthday.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <input type="hidden" id="selectedColor" value="#0d6efd" />
             </div>
 
-            <div class="form-row">
-              <label class="form-label-fixed">Name</label>
-              <input type="text" id="inputName" class="line-input" required />
-            </div>
+            <form id="birthdayForm" class="form-area">
+              <div class="form-row">
+                <label class="form-label-fixed">Choose Your Avatar</label>
+                <div class="avatar-options">
+                  <div
+                    class="color-dot active"
+                    data-color="#0d6efd"
+                    style="background: #0d6efd"
+                  ></div>
+                  <div
+                    class="color-dot"
+                    data-color="#dc3545"
+                    style="background: #dc3545"
+                  ></div>
+                  <div
+                    class="color-dot"
+                    data-color="#ffc107"
+                    style="background: #ffc107"
+                  ></div>
+                  <div
+                    class="color-dot"
+                    data-color="#198754"
+                    style="background: #198754"
+                  ></div>
+                </div>
+                <input type="hidden" id="selectedColor" value="#0d6efd" />
+              </div>
 
-            <div class="form-row">
-              <label class="form-label-fixed">E-Mail</label>
-              <input type="email" id="inputEmail" class="line-input" required />
-            </div>
+              <div class="form-row">
+                <label class="form-label-fixed">Name</label>
+                <input type="text" id="inputName" class="line-input" required />
+              </div>
 
-            <div class="form-row-column">
-              <label class="mb-1">Say Something...</label>
-              <div class="input-wrapper-full">
+              <div class="form-row">
+                <label class="form-label-fixed">E-Mail</label>
                 <input
-                  type="text"
-                  id="inputMessage"
-                  class="line-input full-width"
+                  type="email"
+                  id="inputEmail"
+                  class="line-input"
                   required
                 />
               </div>
-            </div>
-            <div class="form-row-button">
-              <button type="submit" class="send-btn">➤</button>
-            </div>
-          </form>
-        </section>
-      </div>
-    </section>
 
-    <!-- Section 6: Give Back Promotions -->
-    <section id="giveaway" class="">
-      <div class="giveaway-border">
-        <div class="header-win-section text-center">
-          <div class="row align-items-center">
-            <div class="col-md-4 p-4">
-              <img
-                src="/assets/colour/Thailand journey_MU-04-2.png"
-                class="book-tilt mb-3"
-                alt="Thailand Journey"
-              />
-            </div>
-            <div class="col-md-8 text-md-start">
-              <h2 class="campaign-serif fw-bold">
-                SPIN AND GET A CHANCE TO WIN
-              </h2>
-              <h4 class="mb-4">
-                AN ORIGINAL LIMITED EDITION OF THAILAND JOURNEY
-              </h4>
-              <ul class="list-unstyled campaign-sans" style="font-size: 0.9rem">
-                <li>
-                  <i class="fa-solid fa-check fa-2x me-2"></i>
-                  <span
-                    >Over 200 Bangkok Post news items telling Thailand's
-                    story</span
-                  >
-                </li>
-                <li>
-                  <i class="fa-solid fa-check fa-2x me-2"></i>
-                  <span>Hundreds of rare historical photographs</span>
-                </li>
-                <li>
-                  <i class="fa-solid fa-check fa-2x me-2"></i>
-                  <span>Original limited edition marking 75th anniversary</span>
-                </li>
-                <li>
-                  <i class="fa-solid fa-check fa-2x me-2"></i>
-                  <span
-                    >Beautifully designed full-colour 122 pages tabloid on art
-                    paper</span
-                  >
-                </li>
-              </ul>
+              <div class="form-row-column">
+                <label class="mb-1">Say Something...</label>
+                <div class="input-wrapper-full">
+                  <input
+                    type="text"
+                    id="inputMessage"
+                    class="line-input full-width"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row-button">
+                <button type="submit" class="send-btn">➤</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <!-- Section 6: Give Back Promotions -->
+      <section id="giveaway" class="">
+        <div class="giveaway-border">
+          <div class="header-win-section text-center">
+            <div class="row align-items-center">
+              <div class="col-md-4 p-4 d-flex justify-content-center">
+                <img
+                  src="/assets/colour/Thailand journey_MU-04-2.png"
+                  class="book-tilt mb-3"
+                  alt="Thailand Journey"
+                />
+              </div>
+              <div class="col-md-8">
+                <h1 class="text-white">SPIN AND GET A CHANCE TO WIN</h1>
+                <h3 class="mb-4 text-white">
+                  AN ORIGINAL LIMITED EDITION OF THAILAND JOURNEY
+                </h3>
+                <ul
+                  class="list-unstyled campaign-sans"
+                  style="font-size: 0.9rem"
+                >
+                  <li>
+                    <i class="fa-solid fa-check fa-2x me-2"></i>
+                    <span class="text-h6"
+                      >Over 200 Bangkok Post news items telling Thailand's
+                      story</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check fa-2x me-2"></i>
+                    <span class="text-h6"
+                      >Hundreds of rare historical photographs</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check fa-2x me-2"></i>
+                    <span class="text-h6"
+                      >Original limited edition marking 75th anniversary</span
+                    >
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check fa-2x me-2"></i>
+                    <span class="text-h6"
+                      >Beautifully designed full-colour 122 pages tabloid on art
+                      paper</span
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="rules-section">
-          <div class="container">
-            <div class="row align-items-center">
-              <div class="col-md-6 mb-4 mb-md-0">
-                <h3 class="campaign-serif mb-4">KNOW THE RULES!</h3>
-                <ol class="campaign-sans list-unstyled">
-                  <li class="mb-2">1. Register your email to play</li>
-                  <li class="mb-2">2. Match the icons on the reels to win</li>
-                  <li class="text-muted">
-                    3. Example: 3 symbols matching = Win!
-                  </li>
-                  <li class="mt-2">
-                    3. One email can be used to spin for 3 times
-                  </li>
-                </ol>
-              </div>
-              <div class="col-md-6 text-center">
-                <div class="slot-machine">
-                  <div class="slot-screen">
-                    <div class="slot-display" id="machine">
-                      <div class="slot-reel">
-                        <img src="/assets/colour/spinBoolet1.png" />
-                        <img src="/assets/colour/spinBoolet2.png" />
-                        <img src="/assets/colour/spinBoolet3.png" />
-                      </div>
+          <section class="slot-game-section">
+            <div class="p-0">
+              <div class="row g-0">
+                <div
+                  class="col-lg-6 slot-game-section-rules"
+                  style="background-color: black"
+                >
+                  <div class="mx-auto">
+                    <h1 class="text-white text-center">Know The Rules!</h1>
+                    <div class="example-box mt-4 mb-4">
+                      <p class="text-h6 text-white">
+                        1. Register your email to play
+                      </p>
 
-                      <div class="slot-reel">
-                        <img src="/assets/colour/spinBoolet1.png" />
-                        <img src="/assets/colour/spinBoolet2.png" />
-                        <img src="/assets/colour/spinBoolet3.png" />
+                      <p class="text-h6 text-white">
+                        2. One email can be used to spin 3 times
+                      </p>
+                      <p class="text-decoration-underline mb-2">Example</p>
+                      <div class="d-flex gap-2 my-4 justify-content-center">
+                        <div class="mini-card">
+                          <img src="/assets/colour/spinBoolet3.png" alt="76" />
+                        </div>
+                        <div class="mini-card">
+                          <img src="/assets/colour/spinBoolet3.png" alt="76" />
+                        </div>
+                        <div class="mini-card">
+                          <img src="/assets/colour/spinBoolet3.png" alt="76" />
+                        </div>
                       </div>
-
-                      <div class="slot-reel">
-                        <img src="/assets/colour/spinBoolet1.png" />
-                        <img src="/assets/colour/spinBoolet2.png" />
-                        <img src="/assets/colour/spinBoolet3.png" />
-                      </div>
+                      <p class="text-h6 text-white">
+                        3. One email can be used to spin for 3 times
+                      </p>
                     </div>
                   </div>
+                </div>
 
-                  <div class="slot-controls">
-                    <button class="btn btn-primary px-4 me-2" id="spinBtn">
-                      SPIN
-                    </button>
-                    <button class="btn btn-dark border px-4" id="stopBtn">
-                      STOP
-                    </button>
+                <div
+                  class="col-lg-6 bg-light d-flex align-items-center justify-content-center p-5 position-relative"
+                >
+                  <div class="slot-machine-container">
+                    <div class="machine-body">
+                      <div class="lights-strip">
+                        <span class="light"></span><span class="light"></span
+                        ><span class="light"></span> <span class="light"></span
+                        ><span class="light"></span><span class="light"></span>
+                      </div>
+
+                      <div class="machine-screen">
+                        <div class="reels-wrapper" id="reels-container">
+                          <div class="reel-col">
+                            <img
+                              src="/assets/colour/spinBoolet1.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet2.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet3.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet1.png"
+                              class="slot-icon"
+                            />
+                          </div>
+
+                          <div class="reel-col">
+                            <img
+                              src="/assets/colour/spinBoolet2.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet3.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet1.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet2.png"
+                              class="slot-icon"
+                            />
+                          </div>
+
+                          <div class="reel-col">
+                            <img
+                              src="/assets/colour/spinBoolet3.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet1.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet2.png"
+                              class="slot-icon"
+                            />
+                            <img
+                              src="/assets/colour/spinBoolet3.png"
+                              class="slot-icon"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="machine-tray"></div>
+                    </div>
+
+                    <div class="machine-lever">
+                      <div class="lever-base"></div>
+                      <div class="lever-stick"></div>
+                      <div class="lever-ball" id="leverBall"></div>
+                    </div>
+
+                    <div class="controls-area text-center">
+                      <button class="btn btn-spin me-2" id="spinBtn">
+                        SPIN
+                      </button>
+                      <button class="btn btn-stop" id="stopBtn">STOP</button>
+                    </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <div
+            class="modal fade"
+            id="emailModal"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content text-black">
+                <div class="modal-header">
+                  <h5 class="modal-title">ลงทะเบียนเพื่อเล่น</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <p>กรุณากรอกอีเมลเพื่อรับสิทธิ์หมุนวงล้อ (3 ครั้ง)</p>
+                  <input
+                    type="email"
+                    id="emailInput"
+                    class="form-control"
+                    placeholder="name@example.com"
+                  />
+                  <div id="emailError" class="text-danger mt-2 d-none">
+                    รูปแบบอีเมลไม่ถูกต้อง
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="confirmEmailBtn"
+                  >
+                    ยืนยัน
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="modal fade" id="emailModal" tabindex="-1">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Register to Play</h5>
-              </div>
-              <div class="modal-body">
-                <p class="mb-2">Enter your email to spin (3 chances)</p>
-                <input
-                  type="email"
-                  id="emailInput"
-                  class="form-control"
-                  placeholder="your@email.com"
-                />
-                <div class="text-danger mt-2 d-none" id="emailError">
-                  Please enter a valid email
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button class="btn btn-primary" id="confirmEmailBtn">
-                  Confirm
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="promo-bg-gradient">
-        <div class="container text-center">
-          <h2 class="campaign-serif fw-bold mb-0">GIVE BACK PROMOTIONS</h2>
-          <div class="campaign-serif">
-            <span class="text-art">Bangkok Post</span>
-          </div>
-          <div class="mb-5 campaign-serif">
-            <span class="text-art-sub" style="border-top: 1px solid #fff"
-              >The Wall Street Journal</span
-            >
-          </div>
-
-          <div class="row align-items-center">
-            <div class="col-md-5 mb-5 mb-md-0">
-              <img
-                src="/assets/colour/image.psd.png"
-                class="img-fluid"
-                alt="App Content"
-              />
-            </div>
-            <div class="col-md-7 text-start">
-              <div class="promo-card-item">
-                <div class="p-num">01</div>
-                <div
-                  class="flex-grow-1 px-3 d-flex flex-column justify-content-center text-center"
-                >
-                  <div class="p-num-text">
-                    1 year Bangkok Post Epaper<br />Get extra 2 months free
-                  </div>
-                  <div class="pe-3">
-                    <button class="p-btn">SUBSCRIBE</button>
-                  </div>
-                </div>
-              </div>
-              <div class="promo-card-item blue" style="background: #bad9f7">
-                <div class="p-num">02</div>
-                <div
-                  class="flex-grow-1 px-3 px-3 d-flex flex-column justify-content-center text-center"
-                >
-                  <div class="p-num-text">
-                    1 year Bangkok Post Epaper with WSJ<br />
-                    Get extra 2 months free
-                  </div>
-                  <div class="pe-3">
-                    <button class="p-btn">SUBSCRIBE</button>
-                  </div>
-                </div>
-              </div>
-              <div class="promo-card-item dark">
-                <div class="p-num">03</div>
-                <div
-                  class="flex-grow-1 px-3 px-3 d-flex flex-column justify-content-center text-center"
-                >
-                  <div class="p-num-text">
-                    3 year Bangkok Post<br />Get extra 2 months free
-                  </div>
-                  <div class="pe-3">
-                    <button class="p-btn">SUBSCRIBE</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="voucher-footer text-md-start">
-            <div class="row">
-              <div class="col-md-7 d-flex flex-column justify-content-center">
-                <p>
-                  Subscribe to the print edition of the Bangkok Post<br />
-                  within August 8th 2022 to win
-                </p>
-                <h1>CENTRAL GIFT VOUCHER</h1>
-                <p>worth 1,000 baht (5 prizes)*</p>
-                <button
-                  class="btn btn-light fw-bold px-4"
-                  style="color: #0f65ca"
-                >
-                  SUBSCRIBE
-                </button>
-              </div>
-              <div class="col-md-5 d-none d-md-block">
+        <div class="promo-bg-gradient">
+          <div class="container text-center">
+            <h2 class="campaign-serif fw-bold mb-0">GIVE BACK PROMOTIONS</h2>
+            <div class="campaign-serif">
+              <span class="text-art">
                 <img
-                  src="/assets/colour/สกรีนช็อต 2026-02-07 181042.png"
-                  class="newspaper-img"
-                  alt="Voucher"
+                  src="/assets/logo/Logo-bangkokpost3.png"
+                  alt="Bangkok Post logo"
+              /></span>
+            </div>
+            <div class="mb-5 campaign-serif">
+              <span class="text-art-sub" style="border-top: 1px solid #fff"
+                >The Wall Street Journal</span
+              >
+            </div>
+
+            <div class="row align-items-center">
+              <div class="col-md-5 mb-5 mb-md-0">
+                <img
+                  src="/assets/colour/image.psd.png"
+                  class="img-fluid"
+                  alt="App Content"
                 />
               </div>
+              <div class="col-md-7 text-start">
+                <div class="promo-card-item">
+                  <div class="p-num"><span class="text-h1-3">01</span></div>
+                  <div
+                    class="flex-grow-1 px-3 d-flex flex-column justify-content-center text-center"
+                  >
+                    <div class="text-h6">
+                      1 year Bangkok Post Epaper<br />Get extra 2 months free
+                    </div>
+                    <div class="pe-3">
+                      <button class="p-btn text-h5">SUBSCRIBE</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo-card-item blue" style="background: #bad9f7">
+                  <div class="p-num"><span class="text-h1-3">02</span></div>
+                  <div
+                    class="flex-grow-1 px-3 px-3 d-flex flex-column justify-content-center text-center"
+                  >
+                    <div class="text-h6">
+                      1 year Bangkok Post Epaper with WSJ<br />
+                      Get extra 2 months free
+                    </div>
+                    <div class="pe-3">
+                      <button class="p-btn text-h5">SUBSCRIBE</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo-card-item dark">
+                  <div class="p-num"><span class="text-h1-3">03</span></div>
+                  <div
+                    class="flex-grow-1 px-3 px-3 d-flex flex-column justify-content-center text-center"
+                  >
+                    <div class="text-h6">
+                      3 year Bangkok Post<br />Get extra 2 months free
+                    </div>
+                    <div class="pe-3">
+                      <button class="p-btn text-h5">SUBSCRIBE</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <p class="small">*Applicable for the top 5 subscribers</p>
+
+            <div class="voucher-footer text-md-start">
+              <div class="row">
+                <div class="col-md-7 d-flex flex-column justify-content-center">
+                  <p class="text-h5">
+                    Subscribe to the print edition of the Bangkok Post<br />
+                    within August 8th 2022 to win
+                  </p>
+                  <h1>CENTRAL GIFT VOUCHER</h1>
+                  <p class="text-h5">worth 1,000 baht (5 prizes)*</p>
+                  <button
+                    class="btn btn-light text-h5 fw-bold px-4"
+                    style="color: #0f65ca"
+                  >
+                    <h2 style="color: #0f65ca">SUBSCRIBE</h2>
+                  </button>
+                </div>
+                <div class="col-md-5 d-none d-md-block">
+                  <img
+                    src="/assets/colour/สกรีนช็อต 2026-02-07 181042.png"
+                    class="newspaper-img"
+                    alt="Voucher"
+                  />
+                </div>
+              </div>
+              <p class="small text-h5">*Applicable for the top 5 subscribers</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Section 7: Help Us Help Them -->
-    <section class="help-section">
-      <div class="container">
-        <h2 style="color: var(--bp-navy)">HELP US TO HELP THEM</h2>
-        <pa
-          >You could make a huge difference in young Thai student’s life<br />
-          by supporting the Bangkok Post Foundation and Phud Hong Foundation</pa
-        >
+      <!-- Section 7: Help Us Help Them -->
+      <section class="help-section" style="background: #f0f0f0">
+        <div class="container">
+          <h1>HELP US TO HELP THEM</h1>
+          <p class="text-h5">
+            You could make a huge difference in young Thai student’s life<br />
+            by supporting the Bangkok Post Foundation and Phud Hong Foundation
+          </p>
 
-        <section class="donation-container">
-          <div class="donation-tabs">
-            <button class="tab-btn active" data-target="tab-bkkpost">
-              Bangkok Post Foundation
-            </button>
-            <button class="tab-btn" data-target="tab-phudhong">
-              Phud Hong Foundation
-            </button>
-          </div>
-
-          <div class="tab-content-wrapper">
-            <div id="tab-bkkpost" class="donation-content active">
-              <div class="donate-card">
-                <div class="bank-logo">
-                  <img src="/assets/colour/logoBank.png" alt="" />
-                </div>
-                <h3 class="bank-name">Bangkok Bank</h3>
-                <p class="branch-name">Sunthornkosa Branch</p>
-                <p class="acc-label">Account No.</p>
-                <h2 class="acc-number" id="acc-bkk">218 013 3676</h2>
-                <button class="copy-btn" data-copy="2180133676">COPY</button>
-              </div>
-
-              <div class="donate-card">
-                <div class="qr-wrapper">
-                  <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=BangkokPostFoundation"
-                    alt="QR Code"
-                  />
-                </div>
-                <p class="qr-desc">
-                  มูลนิธิบางกอกโพสต์<br />Bangkok Post Foundation
-                </p>
-              </div>
+          <section class="donation-container">
+            <div class="donation-tabs">
+              <button class="tab-btn active" data-target="tab-bkkpost">
+                <h4>Bangkok Post Foundation</h4>
+              </button>
+              <button class="tab-btn" data-target="tab-phudhong">
+                <h4>Phud Hong Foundation</h4>
+              </button>
             </div>
 
-            <div id="tab-phudhong" class="donation-content">
-              <div class="donate-card">
-                <div class="bank-logo">
-                  <img src="/assets/colour/logoBank.png" alt="" />
+            <div class="tab-content-wrapper">
+              <div id="tab-bkkpost" class="donation-content active">
+                <div class="donate-card">
+                  <div class="bank-logo">
+                    <img src="/assets/colour/logoBank.png" alt="" />
+                  </div>
+                  <h3 class="bank-name">Bangkok Bank</h3>
+                  <p class="branch-name">Sunthornkosa Branch</p>
+                  <p class="acc-label">Account No.</p>
+                  <h2 class="acc-number" id="acc-bkk">218 013 3676</h2>
+                  <button class="copy-btn" data-copy="2180133676">COPY</button>
                 </div>
-                <h3 class="bank-name">Bangkok Bank</h3>
-                <p class="branch-name">Surawongse Branch</p>
-                <p class="acc-label">Account No.</p>
-                <h2 class="acc-number" id="acc-phud">218 020 7411</h2>
-                <button class="copy-btn" data-copy="2180207411">COPY</button>
+
+                <div class="donate-card">
+                  <div class="qr-wrapper">
+                    <img
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=BangkokPostFoundation"
+                      alt="QR Code"
+                    />
+                  </div>
+                  <p class="qr-desc">
+                    มูลนิธิบางกอกโพสต์<br />Bangkok Post Foundation
+                  </p>
+                </div>
               </div>
 
-              <div class="donate-card">
-                <div class="qr-wrapper">
-                  <img
-                    src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PhudHongFoundation"
-                    alt="QR Code"
-                  />
+              <div id="tab-phudhong" class="donation-content">
+                <div class="donate-card">
+                  <div class="bank-logo">
+                    <img src="/assets/colour/logoBank.png" alt="" />
+                  </div>
+                  <h3 class="bank-name">Bangkok Bank</h3>
+                  <p class="branch-name">Surawongse Branch</p>
+                  <p class="acc-label">Account No.</p>
+                  <h2 class="acc-number" id="acc-phud">218 020 7411</h2>
+                  <button class="copy-btn" data-copy="2180207411">COPY</button>
                 </div>
-                <p class="qr-desc">
-                  ช่วยเหลือผู้ป่วยและฝึกอาชีพ<br />มูลนิธิโรคเรื้อนพุดหง
-                </p>
+
+                <div class="donate-card">
+                  <div class="qr-wrapper">
+                    <img
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=PhudHongFoundation"
+                      alt="QR Code"
+                    />
+                  </div>
+                  <p class="qr-desc">
+                    ช่วยเหลือผู้ป่วยและฝึกอาชีพ<br />มูลนิธิโรคเรื้อนพุดหง
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <p class="mt-4">
-          Please fax bank transfer slip to +66-(0)2-240-3666,
-          +66-(0)2-616-4597<br />
-          Attention: Khun Kusuma Bekenn (Bangkok Post Foundation) or send an
-          email to edmger@bangkokpost.co.th
-        </p>
-      </div>
-    </section>
+          <p class="mt-4 text-h5">
+            Please fax bank transfer slip to +66-(0)2-240-3666,
+            +66-(0)2-616-4597<br />
+            Attention: Khun Kusuma Bekenn (Bangkok Post Foundation) or send an
+            email to edmger@bangkokpost.co.th
+          </p>
+        </div>
+      </section>
+    </main>
 
     <!-- Footer -->
-    <section class="footer-section">
-      <div class="container">
-        <p>© 2022 Bangkok Post Public Company Limited</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-line"></i></a>
+    <footer class="footer-section" role="contentinfo">
+      <div class="container footer-inner">
+        <div class="footer-left">
+          <p class="text-h7">© 2022 Bangkok Post Public Company Limited</p>
         </div>
-        <p class="mt-3">
-          <i class="fas fa-envelope"></i> enewspaper@bangkokpost.co.th
-          <i class="fas fa-phone"></i>02 616 4000 ext.1917,1919 (M-F 8.30
-          a.m.-5.30 p.m.)
-        </p>
+
+        <div class="footer-center">
+          <span class="footer-icon">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <p class="text-h7">enewspaper@bangkokpost.co.th</p>
+        </div>
+
+        <div class="footer-right">
+          <span class="footer-icon">
+            <i class="fa-solid fa-phone-volume"></i>
+          </span>
+          <p class="text-h7">
+            02 616 4000 ext.1917,1919 (M-F 8.30 a.m.-5.30 p.m.)
+          </p>
+        </div>
       </div>
-    </section>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    </footer>
 
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

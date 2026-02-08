@@ -1,0 +1,368 @@
+/**
+ * Responsive Design
+ * Mobile-first approach with progressive enhancement
+ */
+
+/* === Breakpoint Reference ===
+ * xs: 0px      (default, mobile-first)
+ * sm: 576px    (landscape phones)
+ * md: 768px    (tablets)
+ * lg: 992px    (small laptops)
+ * xl: 1200px   (desktops)
+ * 2xl: 1400px  (large desktops)
+ */
+
+/* === Base (Mobile) === */
+/* All base styles are in base.css และ component files */
+
+/* === Small devices (landscape phones, 576px and up) === */
+@media (min-width: 576px) {
+  /* Typography */
+  html {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: var(--font-size-3xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-2xl);
+  }
+
+  /* Container */
+  .container {
+    max-width: var(--container-sm);
+  }
+
+  /* Gallery Grid - 2 columns */
+  .scholar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Form improvements */
+  .form-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* === Medium devices (tablets, 768px and up) === */
+@media (min-width: 768px) {
+  /* Typography */
+  html {
+    font-size: 17px;
+  }
+
+  /* Container */
+  .container {
+    max-width: var(--container-md);
+    padding-left: var(--spacing-6);
+    padding-right: var(--spacing-6);
+  }
+
+  /* Sections */
+  section {
+    padding-top: var(--section-padding-tablet);
+    padding-bottom: var(--section-padding-tablet);
+  }
+
+  /* Gallery - show 3 columns */
+  .scholar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Foundation grid - side by side */
+  .foundation-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-8);
+  }
+
+  /* Quote section */
+  .quote-content {
+    font-size: var(--font-size-lg);
+  }
+
+  /* Footer - horizontal layout */
+  .footer-grid {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  /* Navigation improvements */
+  .gallery-swiper .swiper-button-prev,
+  .gallery-swiper .swiper-button-next {
+    display: flex;
+  }
+
+  /* Carousel adjustments */
+  .speaker-slide {
+    min-width: 300px;
+  }
+}
+
+/* === Large devices (desktops, 992px and up) === */
+@media (min-width: 992px) {
+  /* Typography */
+  html {
+    font-size: 18px;
+  }
+
+  /* Container */
+  .container {
+    max-width: var(--container-lg);
+  }
+
+  /* Sections */
+  section {
+    padding-top: var(--section-padding-desktop);
+    padding-bottom: var(--section-padding-desktop);
+  }
+
+  /* Gallery - 4 columns */
+  .scholar-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Hero title */
+  .hero-title {
+    font-size: var(--font-size-5xl);
+  }
+
+  /* Enhanced hover effects */
+  .gallery-card:hover .gallery-overlay {
+    opacity: 0.9;
+  }
+
+  .scholar-item:hover .scholar-overlay {
+    opacity: 1;
+  }
+
+  /* Slot machine - better layout */
+  .slot-game-section .row {
+    min-height: 600px;
+  }
+
+  /* Promo cards - larger */
+  .promo-card-item {
+    padding: var(--spacing-6);
+  }
+}
+
+/* === Extra large devices (large desktops, 1200px and up) === */
+@media (min-width: 1200px) {
+  /* Container */
+  .container {
+    max-width: var(--container-xl);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: var(--font-size-5xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-4xl);
+  }
+
+  /* Gallery carousel - show partial next slide */
+  .gallery-swiper {
+    overflow: visible;
+  }
+
+  /* Enhanced spacing */
+  .inspiring-stories {
+    padding: var(--spacing-16) 0;
+  }
+}
+
+/* === 2XL devices (1400px and up) === */
+@media (min-width: 1400px) {
+  .container {
+    max-width: var(--container-2xl);
+  }
+
+  /* More breathing room */
+  section {
+    padding-top: var(--spacing-24);
+    padding-bottom: var(--spacing-24);
+  }
+}
+
+/* === Landscape orientation === */
+@media (orientation: landscape) and (max-height: 600px) {
+  /* Reduce vertical padding on landscape mobile */
+  section {
+    padding-top: var(--spacing-4);
+    padding-bottom: var(--spacing-4);
+  }
+
+  .hero-title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* === High-resolution displays === */
+@media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+  /* Use higher quality images if available */
+  .logo-anniversary {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+/* === Touch devices === */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  button,
+  a,
+  .clickable {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Disable hover effects */
+  .gallery-card:hover .gallery-overlay,
+  .scholar-item:hover .scholar-overlay {
+    opacity: inherit;
+  }
+
+  /* Show controls always */
+  .carousel-arrow {
+    opacity: 1;
+  }
+}
+
+/* === Pointer devices (mouse) === */
+@media (hover: hover) and (pointer: fine) {
+  /* Enhanced hover effects */
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .gallery-card {
+    transition: var(--transition-transform);
+  }
+
+  .gallery-card:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* === Dark mode === */
+@media (prefers-color-scheme: dark) {
+  /* Can be enabled in the future */
+  /*
+    body {
+        background-color: var(--color-dark);
+        color: var(--color-white);
+    }
+    
+    .section-quote {
+        background-color: var(--color-gray-900);
+    }
+    */
+}
+
+/* === Reduced motion === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .swiper {
+    --swiper-navigation-size: 0;
+  }
+}
+
+/* === Print styles === */
+@media print {
+  /* Hide interactive elements */
+  .gallery-swiper .swiper-button-prev,
+  .gallery-swiper .swiper-button-next,
+  .gallery-swiper .swiper-pagination,
+  .carousel-arrow,
+  button,
+  .skip-link {
+    display: none !important;
+  }
+
+  /* Optimize for print */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: 24pt;
+  }
+
+  h2 {
+    font-size: 20pt;
+  }
+
+  h3 {
+    font-size: 16pt;
+  }
+
+  /* Remove shadows and effects */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure images print properly */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* Add URLs after links */
+  a[href^="http"]:after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    color: #666;
+  }
+
+  /* Page breaks */
+  section {
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* White background */
+  * {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* === Container queries (future-proof) === */
+/* When browser support improves */
+/*
+@container (min-width: 400px) {
+    .scholar-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@container (min-width: 800px) {
+    .scholar-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+*/

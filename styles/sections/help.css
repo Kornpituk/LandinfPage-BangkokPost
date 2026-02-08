@@ -1,6 +1,6 @@
 /* Section 7: Help Us */
 .help-section {
-  padding: 60px 20px;
+  padding: 60px 20px 20px 20px;
   background: #f8f9fa;
   text-align: center;
 }
@@ -8,10 +8,18 @@
 .help-section h2 {
   font-size: 50px;
   font-weight: bold;
-  color: #0f65ca;
+  color: #000000;
 }
 
 .help-section pa {
+  font-size: 23px;
+  font-weight: normal;
+  font-family: Garet, Book;
+  color: #000000;
+}
+
+.help-section-text-footer {
+  font-family: Garet-Heavy;
   font-size: 23px;
   font-weight: normal;
   color: #000000;

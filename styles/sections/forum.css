@@ -69,3 +69,28 @@
   cursor: pointer;
   user-select: none;
 }
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+  .forum-banner-text {
+    padding: 40px 15px; /* ลด Padding ลงในมือถือ */
+  }
+
+  .forum-banner-text p.text-h5 {
+    font-size: 18px !important;
+    line-height: 1.5 !important;
+    br { display: none; } /* ซ่อน <br> เพื่อให้ข้อความตัดบรรทัดตามจอจริง */
+  }
+
+  .speaker-slide {
+    flex: 0 0 100%; /* ในมือถือให้เห็น 1 รูปเต็มหน้าจอ */
+  }
+
+  .carousel-viewport {
+    max-width: 280px; /* คุมความกว้างช่องมองในมือถือ */
+  }
+
+  .speaker-slide img {
+    max-width: 150px; /* ย่อรูปในมือถือเล็กน้อย */
+  }
+}

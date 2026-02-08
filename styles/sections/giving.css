@@ -2,37 +2,105 @@
 .giving-section {
   background: var(--bp-blue);
   color: white;
-  padding: 60px 20px;
+  padding: 30px 20px;
   position: relative;
 }
 
-.quote-mark {
-  font-size: 4rem;
-  opacity: 0.3;
+/* เส้นบรรทัด */
+.quote-lines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2) 1px,
+    transparent 1px,
+    transparent 48px
+  );
+  pointer-events: none;
 }
 
 .giving-quote {
-  font-size: 23px;
-  line-height: 1.8;
+  position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
   text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 2;
+}
+
+.giving-quote p {
+  margin-bottom: 32px;
+}
+
+.quote-hand {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: auto; /* ลอง 300–380px */
+  height: 600px; /* กันรูปบี้ */
+}
+
+/* quote mark */
+.quote-mark {
+  font-size: 64px;
+  font-weight: bold;
+  position: absolute;
+  color: #ffffff;
+}
+
+.quote-start {
+  top: -30px;
+  left: -40px;
+}
+
+.quote-end {
+  bottom: -40px;
+  right: -40px;
+}
+
+/* มือจับปากกา */
+.quote-hand {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 280px;
+}
+.giving-quote-section {
+  position: relative;
+  background-color: #1565c0;
+  padding: 80px 20px;
+  overflow: hidden;
 }
 
 .giving-hero {
   background:
-    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("/assets/BW/สกรีนช็อต\ 2026-02-06\ 213029.png");
+    linear-gradient(rgba(26, 26, 26, 0.455), rgba(0, 0, 0, 0.564)),
+    url("/assets/BW/1990-2_Chumphon-Typhoon\ Gay_BW.png");
   background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-top: 40px;
   height: 300px;
   width: auto;
 }
 
-.giving-hero h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+
+@media (max-width: 768px) {
+  .quote-hand {
+    display: none;
+  }
+
+  .quote-start,
+  .quote-end {
+    display: none;
+  }
+
+  .giving-quote {
+    font-size: 16px;
+    line-height: 1.8;
+  }
 }

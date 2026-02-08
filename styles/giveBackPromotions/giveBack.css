@@ -48,6 +48,14 @@
   transform: rotate(-5deg);
 }
 
+@media (max-width: 991px) {
+  .book-tilt {
+    max-width: 250px;
+    transform: rotate(0deg);
+    padding-top: 40px;
+  }
+}
+
 /* ปรับปรุงส่วน giveaway-border */
 .giveaway-border {
   position: relative; /* สำคัญมาก: เพื่อให้เส้นขอบอ้างอิงตำแหน่งกับตัวนี้ */
@@ -72,6 +80,10 @@
   z-index: 999; /* ให้อยู่บนสุดทับสีพื้นหลัง */
 }
 
+.giveaway-border .col-md-8 {
+  padding-bottom: 60px !important;
+}
+
 /* ปรับระยะห่างเนื้อหาข้างในเพื่อให้ไม่โดนเส้นขอบทับตัวอักษร */
 .header-win-section,
 .rules-section {
@@ -81,6 +93,12 @@
 
 .header-win-section .col-md-8 {
   padding-top: 80px;
+}
+
+@media (max-width: 991px) {
+  .header-win-section .col-md-8 {
+    padding-top: 20px;
+  }
 }
 
 /* Section 2: Know the Rules (Black) */
@@ -175,20 +193,29 @@
 }
 .promo-bg-gradient .text-art {
   text-align: center;
-  font-size: 34px;
-  font-weight: bold;
   letter-spacing: 0px;
   color: #ffffff;
   text-transform: uppercase;
   opacity: 1;
+  display: flex;
+  justify-content: center;
 }
+
+.text-art img {
+  max-width: 100%;
+  width: 180px;
+  height: auto;
+  margin: 20px 0 10px 0;
+}
+
 .promo-bg-gradient .text-art-sub {
   text-align: center;
   font-size: 34px;
-  font-weight: bold;
-  letter-spacing: 0px;
+  font-weight: normal;
+  letter-spacing: -6px;
   color: #ffffff;
   text-transform: uppercase;
+  margin: 10px 0 20px 0;
   opacity: 1;
 }
 .phone-frame {
@@ -218,41 +245,78 @@
   color: #0f65ca;
 }
 .p-num {
-  font-size: 117px;
-  font-weight: bold;
   padding: 15px 25px;
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.p-num-text {
-  font-size: 20px;
-  font-weight: normal;
-}
 .promo-card-item.dark .p-num {
   border-right-color: #444;
 }
+
+@media (max-width: 768px) {
+  .promo-card-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .p-num {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+  }
+
+  .p-num span {
+    font-size: 3rem; /* ลดขนาดเลข */
+  }
+
+  .promo-card-item {
+    background: #e3f2fd;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    color: #222;
+    overflow: hidden;
+    padding-bottom: 20px;
+  }
+  .promo-card-item.dark {
+    background: #1a1a1a;
+    color: white;
+  }
+  .promo-card-item.blue {
+    background: #c1ddff;
+    color: #0f65ca;
+  }
+}
+
 .p-btn {
   padding: 10px 20px;
   background: #0f65ca;
   color: white;
   border: none;
   border-radius: 12px;
-  font-size: 24px;
   margin-top: 20px;
+}
+
+.p-btn:active {
+  transform: scale(0.95);
 }
 
 .voucher-footer {
   margin-top: 60px;
   position: relative;
 }
+
+.voucher-footer .btn:active {
+  transform: scale(0.95);
+}
 .voucher-footer h1 {
   font-size: 50px;
   font-weight: bold;
   letter-spacing: 0px;
-  color: #ffffff;
   opacity: 1;
   text-align: center;
 }
@@ -267,12 +331,10 @@
 
 .voucher-footer button {
   font-size: 37px;
-  font-weight: bold;
   letter-spacing: 0px;
-  color: #ffffff;
   opacity: 1;
   text-align: center;
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   border-radius: 15px;
   padding-left: 50px;
