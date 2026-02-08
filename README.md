@@ -1,15 +1,16 @@
-1. แยกรูปมาใส่ที่ assets/images
-2. แยก css มาใส่ที่ styles/css
-3. แยก js มาใส่ที่ styles/js
-4. แยก fonts มาใส่ที่ fonts
+# Bangkok Post – Landing Campaign 76 Years
 
-หน้าหลักจะอยู่ที่ labdinfPage.html
+โปรเจกต์นี้เป็น **Landing Campaign 76 ปี Bangkok Post**  
+พัฒนาด้วย **HTML, CSS และ Vanilla JavaScript**  
+ออกแบบมาเพื่อรองรับ **legacy codebase** ที่มีอยู่เดิม  
+พร้อมปรับโครงสร้างไฟล์ให้เป็นระบบ อ่านง่าย และดูแลต่อได้ในระยะยาว
 
-# Bangkok Post – Frontend Legacy Project
+---
 
-โปรเจกต์นี้เป็นเว็บข่าว/เว็บแคมเปญที่พัฒนาด้วย **HTML, CSS, Vanilla JavaScript**  
-ออกแบบมาเพื่อรองรับ **legacy codebase** แต่ใช้แนวคิดการจัดโครงสร้างแบบ modern frontend
-เพื่อให้ง่ายต่อการดูแลและพัฒนาต่อในระยะยาว
+## Entry Point
+
+- หน้าเริ่มต้นของโปรเจกต์  
+  **`landingPage.html`**
 
 ---
 
@@ -26,19 +27,22 @@
 
 ## Project Structure
 
-โครงสร้างโปรเจกต์ถูกออกแบบให้แยกตาม **responsibility** และ **use case/domain**
+โครงสร้างโปรเจกต์ถูกจัดใหม่โดยแยกตาม **ประเภทของไฟล์**  
+เพื่อให้ง่ายต่อการดูแล แก้ไข และขยายในอนาคต
 
 ├── .vscode/ # VS Code settings
 │
-├── assets/ # Static assets
-│ ├── BW/ # Black & White images
-│ ├── colour/ # Color assets
-│ ├── logo/ # Logos
-│ └── pic/ # General images
-│
-├── backup/ # Backup / deprecated files
+├── assets/
+│ └── images/ # รูปภาพทั้งหมด (campaign, banner, icon)
 │
 ├── fonts/ # Web fonts
+│
+├── styles/
+│ └── css/ # CSS ทั้งหมดของโปรเจกต์
+│ ├── base/ # reset, variables, global rules
+│ ├── layout/ # header, footer, navigation
+│ ├── sections/ # page / section specific styles
+│ └── legacy/ # legacy styles (forum / old campaign)
 │
 ├── js/
 │ ├── components/ # UI components (component-based mindset)
@@ -50,37 +54,90 @@
 │ │
 │ └── vendors/ # Third-party libraries (DO NOT EDIT)
 │
-├── styles/
-│ ├── base/ # Global styles (reset, variables, base rules)
-│ │
-│ ├── layout/ # Layout styles (header, footer, grid)
-│ │
-│ ├── sections/ # Page/section-specific styles
-│ │
-│ ├── forum2022/ # Legacy forum styles (⚠ legacy)
-│ │ └── backUp/
-│ │
-│ ├── foundation/ # Foundation-related styles
-│ ├── giveaway/ # Giveaway campaign styles
-│ ├── giveBackPromotions/ # Promotion styles
-│ └── help/ # Help page styles
+├── backup/ # Backup / deprecated files
 │
-└── useCase/ # Page-specific or business-specific implementations
+├── useCase/ # Business / page-specific logic
+│
+└── landingPage.html # Main entry page
+
+
+---
 
 ## Folder Responsibilities
 
-### `assets/`
+### `assets/images/`
 
-ใช้เก็บ static files ทั้งหมด เช่น รูป โลโก้ ไอคอน  
-❗ ไม่ควร import logic หรือ style ตรงจากโฟลเดอร์นี้
+ใช้เก็บรูปภาพทั้งหมดของโปรเจกต์  
+เช่น campaign image, banner, thumbnail  
+ไม่ควรเก็บ CSS หรือ JavaScript ในโฟลเดอร์นี้
+
+---
+
+### `fonts/`
+
+ใช้เก็บ web fonts ทั้งหมด  
+ช่วยให้จัดการ `@font-face` และ performance ได้ง่ายขึ้น
+
+---
+
+### `styles/css/`
+
+โฟลเดอร์ CSS หลัก แยกตามหน้าที่อย่างชัดเจน
+
+#### `base/`
+
+- reset.css
+- variables.css
+- typography
+- utility classes
+
+ใช้สำหรับ global styles เท่านั้น  
+ไม่ควรใส่ style ของ section หรือ page ลงที่นี่
+
+---
+
+#### `layout/`
+
+ใช้สำหรับโครงสร้างหลักของหน้าเว็บ เช่น
+
+- header
+- footer
+- navigation
+- grid
+
+---
+
+#### `sections/`
+
+CSS ที่ผูกกับ section หรือ page เฉพาะ เช่น
+
+- landing
+- giveaway
+- foundation
+- promotions
+- help
+
+---
+
+#### `legacy/`
+
+**Legacy styles**
+
+- ใช้สำหรับระบบหรือแคมเปญเก่า
+- แก้ไขเฉพาะเมื่อจำเป็น
+- ไม่ควร reuse ใน feature ใหม่
+
+---
 
 ### `js/components/`
 
-เขียน JavaScript ในแนว **component-based**
+JavaScript ถูกเขียนในแนว **component-based** (แม้ไม่ใช้ framework)
+
+แนวทาง:
 
 - 1 component = 1 folder
-- แต่ละ component ควรจัดการ DOM ของตัวเอง
-- หลีกเลี่ยงการเขียน logic กระจายหลายไฟล์
+- component ดูแล DOM และ event ของตัวเอง
+- ลดการเขียน logic แบบ global
 
 ตัวอย่าง:
 
@@ -89,52 +146,26 @@ js/components/giveaway/
 ├── modal.js
 └── form.js
 
+
+---
+
 ### `js/utils/`
 
-ฟังก์ชันที่ใช้ซ้ำได้หลายที่ เช่น:
+ฟังก์ชันที่ใช้ซ้ำได้หลายที่ เช่น
 
 - DOM helpers
 - formatter
 - validation
 - API helpers
 
+---
+
 ### `js/vendors/`
 
-Library ภายนอก (เช่น slider, carousel, polyfill)
-❌ **ห้ามแก้ไขโค้ดในโฟลเดอร์นี้**
+Library ภายนอก เช่น slider, slot machine, polyfill  
+ห้ามแก้ไขโค้ดในโฟลเดอร์นี้
 
-### `styles/base/`
-
-Global CSS:
-
-- reset.css
-- variables.css
-- typography
-- utility classes
-
-⚠️ ไม่ควรใส่ style ของ section หรือ page ลงที่นี่
-
-### `styles/layout/`
-
-โครงสร้างหลักของหน้าเว็บ:
-
-- header
-- footer
-- grid
-- navigation
-
-### `styles/sections/`
-
-CSS ที่ผูกกับ section หรือ page เฉพาะ
-เช่น homepage, article, campaign
-
-### `styles/forum2022/`
-
-⚠️ **Legacy styles**
-
-- ใช้สำหรับระบบเก่า
-- แก้ไขเฉพาะเมื่อจำเป็น
-- หลีกเลี่ยงการ reuse ใน feature ใหม่
+---
 
 ## Coding Guidelines
 
@@ -145,6 +176,8 @@ CSS ที่ผูกกับ section หรือ page เฉพาะ
 - แยก logic เป็น component
 - ห้ามเขียน inline script ใน HTML
 
+---
+
 ### CSS
 
 - หลีกเลี่ยง global selector (`div`, `p`, `h1`)
@@ -152,11 +185,13 @@ CSS ที่ผูกกับ section หรือ page เฉพาะ
 - แยกไฟล์ตาม responsibility
 - ห้ามแก้ vendor CSS โดยตรง
 
+---
+
 ## Legacy Notes
 
-- โฟลเดอร์ `forum2022` และ `backup` ถือเป็น legacy
-- Feature ใหม่ **ไม่ควรพึ่งพา legacy styles**
-- หากจำเป็นต้องแก้ legacy code ควร comment ให้ชัดเจน
+- โฟลเดอร์ `legacy/` และ `backup/` ถือเป็น legacy
+- Feature ใหม่ไม่ควรพึ่งพา legacy styles
+- หากจำเป็นต้องแก้ legacy code ต้อง comment ให้ชัดเจน
 
 ---
 
@@ -172,8 +207,8 @@ CSS ที่ผูกกับ section หรือ page เฉพาะ
   - `base`
   - `layout`
   - `sections`
-- ใช้ไฟล์ CSS กลางเป็นตัวรวม (`@import`) เพื่อลดความซับซ้อน
-- ลดผลกระทบต่อ legacy code เดิม
+- ใช้ไฟล์ CSS กลางเป็นตัวรวม (`@import`)
+- ปรับโครงสร้างโดยลดผลกระทบต่อ legacy code เดิม
 
 โครงสร้างนี้ช่วยให้:
 
