@@ -16,7 +16,8 @@
 16px
 14px
 
-### 1. Front ที่ได้มา มีแค่ Garet-Book และ Garet-Heavy
+### 2. Front ที่ได้มา มีแค่ Garet-Book และ Garet-Heavy
 - Garet-Book มีน้ำหนัก 500
 - Garet-Heavy มีน้ำหนัก 900
 - ทำให้ เว็บมี ขนาดน้ำหนักแค่ 2 ขนาด
+
